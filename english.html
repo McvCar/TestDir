@@ -1,0 +1,2807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>单词语音播放器 - 专业版</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', Arial, sans-serif;
+        }
+        
+        body {
+            background: #121212;
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 10px;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            background: #1e1e1e;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            overflow: clip; /* 修改为 clip */
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        header {
+            background: #252525;
+            color: #ffffff;
+            padding: 15px 20px;
+            border-bottom: 1px solid #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        h1 {
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        
+        .header-controls {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .subtitle {
+            font-size: 0.85rem;
+            opacity: 0.7;
+            line-height: 1.4;
+        }
+        
+        .main-content {
+            display: flex;
+            flex: 1;
+            overflow: clip; /* 修改为 clip */
+            min-height: 0;
+        }
+        
+        .sidebar {
+            width: 280px;
+            background: #252525;
+            border-right: 1px solid #333;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+        
+        .sidebar.hidden {
+            transform: translateX(-100%);
+        }
+        
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            display: none;
+        }
+        
+        .sidebar-header {
+            padding: 12px 15px;
+            border-bottom: 1px solid #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .sidebar-title {
+            font-size: 1.05rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .sidebar-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .content {
+            flex: 1;
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            overflow: clip; /* 修改为 clip */
+            gap: 15px;
+            min-height: 0;
+        }
+        
+        .input-section {
+            background: #252525;
+            border-radius: 10px;
+            padding: 15px;
+            border: 1px solid #333;
+            gap: 12px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        
+        .word-list-section {
+            background: #252525;
+            border-radius: 10px;
+            padding: 15px;
+            border: 1px solid #333;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            transition: all 0.3s;
+            flex: 1 0 auto;
+            min-height: 0;
+            overflow: clip; /* 修改为 clip */
+        }
+        
+        .instructions {
+            background: #252525;
+            border-radius: 10px;
+            padding: 15px;
+            border: 1px solid #333;
+            min-height: 0;
+        }
+        
+        .edit-mode-active .word-list-section {
+            border: 2px solid #0d6efd;
+            box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.5);
+        }
+        
+        .sticky-container {
+            position: sticky;
+            top: 0;
+            overflow: clip;
+            z-index: 10;
+            background: #252525;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 4px;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        textarea {
+            width: 100%;
+            padding: 10px;
+            background: #2d2d2d;
+            border: 1px solid #444;
+            border-radius: 5px;
+            color: #e0e0e0;
+            font-size: 1rem;
+            resize: vertical;
+            min-height: 70px;
+            transition: border-color 0.3s;
+        }
+        
+        textarea:focus {
+            outline: none;
+            border-color: #4cc9f0;
+        }
+        
+        .btn {
+            background: #3a3a3a;
+            color: #e0e0e0;
+            border: 1px solid #444;
+            padding: 7px 12px;
+            font-size: 0.85rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .btn:hover {
+            background: #4a4a4a;
+            border-color: #666;
+        }
+        
+        .btn:active {
+            transform: translateY(1px);
+        }
+        
+        .btn-add {
+            background: #198754;
+            border-color: #198754;
+            color: white;
+        }
+        
+        .btn-add:hover {
+            background: #157347;
+            border-color: #146c43;
+        }
+        
+        .btn-reset {
+            background: #dc3545;
+            border-color: #dc3545;
+            color: white;
+        }
+        
+        .btn-reset:hover {
+            background: #bb2d3b;
+            border-color: #b02a37;
+        }
+        
+        .btn-edit {
+            background: #0d6efd;
+            border-color: #0d6efd;
+            color: white;
+        }
+        
+        .btn-edit:hover {
+            background: #0b5ed7;
+            border-color: #0a58ca;
+        }
+        
+        .btn-edit.active {
+            background: #0a58ca;
+            border-color: #0a58ca;
+            color: white;
+            box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.5);
+        }
+        
+        .btn-collection {
+            background: #0d6efd;
+            border-color: #0d6efd;
+            color: white;
+        }
+        
+        .btn-collection:hover {
+            background: #0b5ed7;
+            border-color: #0a58ca;
+        }
+        
+        .btn-play {
+            background: #198754;
+            border-color: #198754;
+            color: white;
+            font-weight: 600;
+            padding: 8px 16px;
+            font-size: 1rem;
+            min-width: 90px;
+            justify-content: center;
+        }
+        
+        .btn-play:hover {
+            background: #157347;
+            border-color: #146c43;
+        }
+        
+        .btn-play i {
+            margin-right: 3px;
+        }
+        
+        .btn-play.paused {
+            background: #dc3545;
+        }
+        
+        .btn-play.paused:hover {
+            background: #bb2d3b;
+        }
+        
+        .word-list {
+            background: #2d2d2d;
+            border: 1px solid #444;
+            border-radius: 5px;
+            padding: 14px;
+            min-height: 60px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            line-height: 1.4;
+            transition: all 0.3s;
+            flex: 1 0 auto;
+            overflow-y: auto;
+        }
+        
+        .word-list:hover {
+            border-color: #555;
+        }
+        
+        .word-item {
+            background: #333333;
+            border: 1px solid #444;
+            border-radius: 4px;
+            padding: 4px 9px;
+            font-size: 1.05rem;
+            font-weight: 400;
+            transition: all 0.2s;
+            position: relative;
+            word-break: keep-all;
+            opacity: 0.8;
+            cursor: move;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3px;
+            /* 允许文本选择 */
+            user-select: text;
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+        }
+        
+        /* 修改模式下的单词项样式 */
+        .edit-mode .word-item {
+            cursor: move;
+        }
+        
+        .word-item.highlighted {
+            background: #0d6efd !important;
+            color: white !important;
+            border-color: #0a58ca !important;
+            transform: scale(1.05) !important;
+            box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.4) !important;
+            z-index: 3 !important;
+            opacity: 1 !important;
+        }
+        
+        .word-item.ab-start {
+            background: #ffc107;
+            color: #000;
+            border-color: #d39e00;
+            transform: scale(1.05);
+            box-shadow: 0 0 0 2px rgba(222, 170, 12, 0.6);
+            z-index: 2;
+        }
+        
+        .word-item.ab-end {
+            background: #28a745;
+            color: white;
+            border-color: #1e7e34;
+            transform: scale(1.05);
+            box-shadow: 0 0 0 2px rgba(32, 168, 52, 0.6);
+            z-index: 2;
+        }
+        
+        .word-item.ab-range, .word-item.ab-range-hover {
+            background: #6c757d;
+            color: white;
+            border-color: #5a6268;
+        }
+        
+        .word-content-container {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            gap: 3px;
+        }
+        
+        .word-content {
+            flex: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        
+        .word-notes {
+            font-size: 0.8rem;
+            color: #a0a0a0;
+            background: #242424;
+            border-radius: 3px;
+            padding: 2px 5px;
+            display: block;
+            max-width: 100px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .word-actions {
+            display: flex;
+            gap: 3px;
+            flex-shrink: 0;
+        }
+        
+        .word-play, .word-delete {
+            font-size: 0.8rem;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: all 0.2s;
+            padding: 1px 3px;
+            border-radius: 2px;
+        }
+        
+        .word-play:hover, .word-delete:hover {
+            opacity: 1;
+            background: #444;
+        }
+        
+        .word-play {
+            color: #0dcaf0;
+        }
+        
+        .word-delete {
+            color: #dc3545;
+        }
+        
+        .tooltip {
+            position: absolute;
+            background: #333;
+            color: #fff;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            z-index: 1000;
+            display: none;
+            max-width: 300px;
+            word-break: break-all;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: flex-end;
+            margin-top: 6px;
+            padding: 10px 0;
+        }
+        
+        .play-controls {
+            display: flex;
+            gap: 8px;
+            flex: 1;
+            min-width: 180px;
+        }
+        
+        .voice-settings, .speed-settings, .delimiter-settings, .pause-settings {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            flex: 1;
+            min-width: 100px;
+        }
+        
+        .voice-settings label, .speed-settings label, .delimiter-settings label, .pause-settings label {
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .voice-settings select, .speed-settings input, .delimiter-settings select, .delimiter-settings input, .pause-settings input {
+            width: 100%;
+            padding: 4px 6px;
+            background: #2d2d2d;
+            border: 1px solid #444;
+            border-radius: 3px;
+            color: #e0e0e0;
+            font-size: 0.85rem;
+        }
+        
+        .delimiter-settings {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            flex-wrap: wrap;
+        }
+        
+        .delimiter-settings select {
+            max-width: 180px;
+        }
+        
+        .delimiter-settings input {
+            width: auto;
+            max-width: 50px;
+            text-align: center;
+            padding: 3px 5px;
+        }
+        
+        .settings {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            background: #2d2d2d;
+            padding: 5px 8px;
+            border-radius: 4px;
+            border: 1px solid #444;
+            flex: 1;
+            min-width: 180px;
+        }
+        
+        .settings label {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            white-space: nowrap;
+        }
+        
+        .settings input {
+            width: 45px;
+            padding: 4px 5px;
+            background: #333;
+            border: 1px solid #444;
+            border-radius: 2px;
+            color: #e0e0e0;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        .status {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.95rem;
+            color: #c5c5c5;
+            margin-top: 10px;
+            padding: 8px 10px;
+            background: #252525;
+            border-radius: 5px;
+            border: 1px solid #333;
+            width: 100%;
+            font-weight: 500;
+            min-height: 28px;
+        }
+        
+        .timer {
+            margin-left: auto;
+            font-weight: bold;
+            color: #0dcaf0;
+            background: #2d2d2d;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+        
+        .status-word {
+            font-weight: 600;
+            color: #0d6efd;
+            font-size: 1.05rem;
+            margin: 0 5px;
+        }
+        
+        .status-note {
+            font-style: italic;
+            color: #a0a0a0;
+            margin-left: 10px;
+            padding-left: 10px;
+            border-left: 1px solid #444;
+        }
+        
+        .instructions h3 {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 8px;
+            color: #ffffff;
+            font-size: 1rem;
+        }
+        
+        .instructions ul {
+            padding-left: 16px;
+            font-size: 0.85rem;
+        }
+        
+        .instructions li {
+            margin-bottom: 6px;
+            line-height: 1.4;
+        }
+        
+        .highlight {
+            color: #0d6efd;
+            font-weight: 500;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 10px;
+            color: #888;
+            font-size: 0.75rem;
+            border-top: 1px solid #333;
+            background: #1e1e1e;
+        }
+        
+        /* 收藏夹样式 */
+        .collection-item {
+            background: #2d2d2d;
+            border: 1px solid #444;
+            border-radius: 5px;
+            padding: 8px 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .collection-item:hover {
+            background: #3a3a3a;
+            border-color: #666;
+        }
+        
+        .collection-item.active {
+            background: #0d6efd;
+            color: white;
+            border-color: #0a58ca;
+        }
+        
+        .collection-item i {
+            font-size: 0.9rem;
+        }
+        
+        .collection-item .collection-name {
+            flex: 1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .collection-item .collection-count {
+            background: #3a3a3a;
+            border-radius: 10px;
+            padding: 2px 6px;
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+        
+        .collection-item .collection-actions {
+            display: none;
+            gap: 5px;
+            opacity: 0.7;
+        }
+        
+        .collection-item:hover .collection-actions {
+            display: flex;
+        }
+        
+        .collection-actions i {
+            cursor: pointer;
+            padding: 2px;
+            border-radius: 2px;
+        }
+        
+        .collection-actions i:hover {
+            background: #444;
+            opacity: 1;
+        }
+        
+        .collection-header {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .rename-input {
+            width: 100%;
+            padding: 3px 5px;
+            background: #2d2d2d;
+            border: 1px solid #0d6efd;
+            border-radius: 3px;
+            color: #e0e0e0;
+            font-size: 0.85rem;
+        }
+        
+        .dragging {
+            opacity: 0.6;
+            transform: scale(1.08);
+            z-index: 100;
+        }
+        
+        /* 按钮布局优化 */
+        .input-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .delimiter-section {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 8px;
+        }
+        
+        .delimiter-controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-top: 8px;
+        }
+        
+        /* 修改模式提示 */
+        .edit-mode-hint {
+            display: none;
+            background: #2d2d2d;
+            border: 1px solid #444;
+            border-radius: 5px;
+            padding: 8px 10px;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+            color: #a0a0a0;
+            animation: fadeIn 0.3s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .edit-mode .edit-mode-hint {
+            display: block;
+        }
+        
+        /* 移动端适配 */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+        
+        .collection-item {
+            padding: 10px 12px;
+        }
+        
+        .collection-item .collection-name {
+            font-size: 0.95rem;
+        }
+        
+        .word-item {
+            font-size: 0.95rem;
+            padding: 4px 8px;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 900px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid #333;
+                position: fixed;
+                top: 60px;
+                left: 0;
+                height: calc(100vh - 60px);
+                z-index: 1000;
+                transform: translateX(-100%);
+            }
+            
+            .sidebar.visible {
+                transform: translateX(0);
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                height: auto;
+            }
+            
+            .voice-settings, .speed-settings, .delimiter-settings, .settings {
+                min-width: 100%;
+            }
+            
+            .play-controls {
+                width: 100%;
+            }
+            
+            .btn-play {
+                width: 100%;
+            }
+            
+            .word-list {
+                max-height: 200px;
+            }
+            
+            .delimiter-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .btn-add, .btn-reset {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .delimiter-settings {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .delimiter-settings select {
+                max-width: 100%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 5px;
+            }
+            
+            .container {
+                border-radius: 8px;
+            }
+            
+            header {
+                padding: 10px 12px;
+            }
+            
+            h1 {
+                font-size: 1.25rem;
+            }
+            
+            .content {
+                padding: 12px;
+            }
+            
+            .input-section, .word-list-section, .instructions {
+                padding: 12px;
+            }
+            
+            textarea {
+                min-height: 60px;
+                font-size: 0.95rem;
+            }
+            
+            .btn {
+                font-size: 0.85rem;
+                padding: 6px 10px;
+            }
+            
+            .btn-play {
+                font-size: 0.95rem;
+                padding: 7px 14px;
+            }
+            
+            .status {
+                font-size: 0.85rem;
+            }
+            
+            .status-word {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1><i class="fas fa-volume-up"></i> 单词语音播放器 (专业版)</h1>
+            </div>
+        </header>
+        
+        <div class="main-content">
+            <div class="sidebar" id="sidebar">
+                <div class="sidebar-header">
+                    <div class="sidebar-title">
+                        <i class="fas fa-book"></i> 我的收藏
+                    </div>
+                    <button class="btn" id="addCollectionBtn" title="添加新收藏">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+                <div class="sidebar-content" id="collectionsList">
+                    <!-- 收藏夹列表将动态生成 -->
+                </div>
+            </div>
+            <div class="sidebar-overlay" id="sidebarOverlay"></div>
+            
+            <div class="content">
+                <div class="input-section">
+                    <label for="wordInput"><i class="fas fa-keyboard"></i> 输入单词列表</label>
+                    <p style="font-size: 0.8rem; opacity: 0.8; margin: 0;">请输入要播放的单词，用分隔符分隔（例如：apple banana cat dog）</p>
+                    <textarea id="wordInput" placeholder="输入单词列表，用空格分隔...">breath aggressive trust advantage belong treat positive stream pleasant honest product produce</textarea>
+                    
+                    <label for="notesInput" style="margin-top: 10px;"><i class="fas fa-sticky-note"></i> 输入单词备注（可选: 苹果 香蕉 猫 狗）</label>
+                    <p style="font-size: 0.8rem; opacity: 0.8; margin: 0;">请输入与单词顺序对应的备注，用相同分隔符分隔</p>
+                    <textarea id="notesInput" placeholder="输入单词备注，用相同分隔符分隔..."></textarea>
+                    
+                    <div class="delimiter-controls">
+                        <div class="delimiter-settings" style="flex: 1; min-width: 200px; align-items:flex-start;">
+                            <label for="delimiterPresets">
+                                <i class="fas fa-separator"></i> 分隔符预设:
+                            </label>
+                            <select id="delimiterPresets">
+                                <option value="[\s,，.。]+">空格/换行/制表符/逗号/句号</option>
+                                <option value="\s+">空格/换行/制表符</option>
+                                <option value=",|，">逗号(中英文)</option>
+                                <option value="\n">换行符</option>
+                                <option value="[.。]">句号(中英文)</option>
+                                <option value="none">无分隔符/句子模式</option>
+                                <option value="custom">自定义</option>
+                            </select>
+                        </div>
+                        
+                        <div class="delimiter-settings" style="flex: 2; min-width: 100px; align-items:flex-start;">
+                            <label for="delimiterInput">自定义 分隔符(正则匹配):</label>
+                            <input type="text" id="delimiterInput" value=" " maxlength="5" title="设置单词分隔符">
+                        </div>
+                        
+                        <div class="input-actions">
+                            <button class="btn btn-add" id="addWordsBtn">
+                                <i class="fas fa-plus"></i> 添加单词
+                            </button>
+                            <button class="btn btn-reset" id="resetBtn">
+                                <i class="fas fa-undo"></i> 重置列表并导入
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="word-list-section">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <h2 class="section-title"><i class="fas fa-list-ul"></i> 单词列表</h2>
+                        <div style="display: flex; gap: 8px;">
+                            <button class="btn btn-edit" id="editModeBtn">
+                                <i class="fas fa-edit"></i> 修改模式
+                            </button>
+                            <button class="btn btn-collection" id="saveCollectionBtn">
+                                <i class="fas fa-bookmark"></i> 收藏列表
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="edit-mode-hint">
+                        <i class="fas fa-info-circle"></i> 修改模式已启用 - <strong>拖拽</strong>可调整单词顺序，<strong>小喇叭</strong>可播放发音，<strong>垃圾桶</strong>可删除单词
+                    </div>
+                    
+                    <div class="sticky-container">
+                        <div class="controls">
+                            <div class="play-controls">
+                                <button class="btn btn-play" id="playBtn">
+                                    <i class="fas fa-play"></i> 播放
+                                </button>
+                                <button class="btn" id="abLoopBtn">
+                                    <i class="fas fa-arrows-alt-h"></i> A-B循环
+                                </button>
+                            </div>
+                            
+                            <div class="voice-settings">
+                                <label for="voiceSelect"><i class="fas fa-microphone"></i> 发音人:</label>
+                                <select id="voiceSelect">
+                                    <!-- 选项将动态生成 -->
+                                </select>
+                            </div>
+                            
+                            <div class="speed-settings">
+                                <label for="speechRate"><i class="fas fa-tachometer-alt"></i> 播放速度:</label>
+                                <input type="number" id="speechRate" min="0.5" max="2.0" step="0.1" value="0.9">
+                            </div>
+                            
+                            <div class="pause-settings">
+                                <label for="pauseInterval"><i class="fas fa-clock"></i> 单词停顿:</label>
+                                <input type="number" id="pauseInterval" min="0.1" max="5" step="0.1" value="0.5">
+                            </div>
+                            
+                            <div class="voice-settings" style="margin: 0; padding: 0;">
+                                <label for="displayMode" style="font-size: 0.85rem; margin-bottom: 4px;">
+                                    <i class="fas fa-list"></i> 显示模式:
+                                </label>
+                                <select id="displayMode" style="width: auto; max-width: 150px;">
+                                    <option value="word+note">单词+备注</option>
+                                    <option value="word-only">只显示单词</option>
+                                    <option value="note-only">只显示备注</option>
+                                </select>
+                            </div>
+                            
+                            <div class="settings" style="margin-left: 5px; flex: 0 0 auto;">
+                                <input type="checkbox" id="showPlayIcon" checked>
+                                <label for="showPlayIcon" style="white-space: nowrap; margin-left: 3px;">显示发音图标</label>
+                            </div>
+                        </div>
+                        
+                        <div class="status" id="status">
+                            <i class="fas fa-info-circle"></i> 
+                            <span>就绪 - 等待导入单词列表</span>
+                            <span class="timer" id="timer">00:00</span>
+                        </div>
+                    </div>
+                    
+                    <div class="word-list" id="wordList">
+                        <!-- 单词列表将动态生成在这里 -->
+                    </div>
+                </div>
+                
+                <div class="instructions">
+                    <h3><i class="fas fa-lightbulb"></i> 使用说明</h3>
+                    <ul>
+                        <li>在输入框中输入单词，用<span class="highlight">分隔符</span>分隔（默认空格）</li>
+                        <li>点击"<span class="highlight">添加单词</span>"在现有列表基础上添加新单词</li>
+                        <li>点击"<span class="highlight">重置列表并导入</span>"替换当前单词列表</li>
+                        <li>点击"<span class="highlight">播放</span>"按钮开始循环播放单词，当前播放单词会高亮显示</li>
+                        <li>点击单词内的<span class="highlight">小喇叭图标</span>可发音（非播放状态下）</li>
+                        <li>使用"<span class="highlight">发音人</span>"下拉菜单选择不同的英式发音</li>
+                        <li>使用"<span class="highlight">播放速度</span>"调整语速（默认0.9）</li>
+                        <li>使用"<span class="highlight">单词停顿</span>"调整单词之间的停顿时间（0.1-5秒）</li>
+                        <li>当前单词播放结束后，<span class="highlight">立即高亮下个单词</span>，等待设定的停顿时间后开始播放</li>
+                        <li>通过"<span class="highlight">修改模式</span>"按钮可编辑单词列表，拖拽调整顺序，删除单词</li>
+                        <li>通过"<span class="highlight">收藏列表</span>"按钮保存当前单词列表，刷新页面后仍可使用</li>
+                        <li>支持通过<span class="highlight">拖拽调整</span>单词和收藏夹顺序</li>
+                        <li>收藏夹列表在移动端以<span class="highlight">抽屉式导航</span>显示，点击菜单按钮打开</li>
+                        <li>使用"<span class="highlight">A-B循环</span>"按钮可以设置单词循环范围</li>
+                        <li>控制面板和状态栏在滚动时会固定在窗口顶部，方便操作</li>
+                        <li>学习时间会自动统计并显示在状态栏右侧（页面刷新时重置）</li>
+                        <li>添加单词时会自动跳过已存在的重复单词</li>
+                        <li>所有收藏夹中的相同单词共享同一份备注数据</li>
+                        <li>在播放模式下，单词列表禁止拖拽，但可以复制单词文本</li>
+                        <li>鼠标悬停在单词上时，可以全选并复制中文备注</li>
+                        <li>在修改模式下，可以拖拽调整单词顺序，点击垃圾桶图标删除单词</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>单词语音播放器 &copy; 2023 | 深色护眼模式 | 数据自动保存</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // DOM elements
+            const wordInput = document.getElementById('wordInput');
+            const notesInput = document.getElementById('notesInput');
+            const addWordsBtn = document.getElementById('addWordsBtn');
+            const resetBtn = document.getElementById('resetBtn');
+            const wordList = document.getElementById('wordList');
+            const playBtn = document.getElementById('playBtn');
+            const abLoopBtn = document.getElementById('abLoopBtn');
+            const editModeBtn = document.getElementById('editModeBtn');
+            const saveCollectionBtn = document.getElementById('saveCollectionBtn');
+            const pauseInterval = document.getElementById('pauseInterval');
+            const speechRate = document.getElementById('speechRate');
+            const statusEl = document.getElementById('status');
+            const timerEl = document.getElementById('timer');
+            const voiceSelect = document.getElementById('voiceSelect');
+            const displayMode = document.getElementById('displayMode');
+            const showPlayIcon = document.getElementById('showPlayIcon');
+            const addCollectionBtn = document.getElementById('addCollectionBtn');
+            const collectionsList = document.getElementById('collectionsList');
+            const delimiterInput = document.getElementById('delimiterInput');
+            const delimiterPresets = document.getElementById('delimiterPresets');
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const sidebar = document.getElementById('sidebar');
+            const sidebarOverlay = document.getElementById('sidebarOverlay');
+            const editModeHint = document.querySelector('.edit-mode-hint');
+            const contentEl = document.querySelector('.content');
+            const container = document.querySelector('.container');
+            
+            // 添加浮动提示元素
+            const tooltip = document.createElement('div');
+            tooltip.className = 'tooltip';
+            document.body.appendChild(tooltip);
+            
+            // App state
+            let words = [];
+            let notes = {};  // 全局备注数据，所有收藏夹共享
+            let isPlaying = false;
+            let isEditMode = false;
+            let abLoopMode = false;
+            let abStartIndex = null;
+            let abEndIndex = null;
+            let currentIndex = 0;
+            let speechSynth = window.speechSynthesis;
+            let voices = [];
+            let selectedVoice = null;
+            let voiceLoading = true;
+            let collections = [];
+            let currentCollectionId = null;
+            let lastCollectionId = null;
+            let delimiter = ' ';
+            let currentUtterance = null;
+            let displayModeValue = 'word+note';
+            let showPlayIconValue = true;  // 控制是否显示小喇叭图标
+            
+            // Timer state
+            let timerInterval = null;
+            let seconds = 0;
+            
+            // Initialize
+            function init() {
+                // Load saved data
+                loadSavedData();
+                
+                // Load voices
+                loadVoices();
+                
+                // Set up event listeners
+                setupEventListeners();
+                
+                // Render initial state
+                renderWordList();
+                renderCollections();
+                
+                // Load last collection
+                loadLastCollection();
+                
+                // Update status
+                updateStatus('就绪 - 等待导入单词列表');
+            }
+            
+            // Load saved data from localStorage
+            function loadSavedData() {
+                // Load settings
+                const savedSettings = localStorage.getItem('wordPlayer_settings');
+                if (savedSettings) {
+                    const settings = JSON.parse(savedSettings);
+                    delimiter = settings.delimiter || ' ';
+                    delimiterInput.value = delimiter;
+                    delimiterPresets.value = settings.delimiterPreset || 'custom';
+                    displayModeValue = settings.displayMode || 'word+note';
+                    showPlayIconValue = settings.showPlayIcon !== undefined ? settings.showPlayIcon : true;
+                    
+                    // Update delimiter input based on preset
+                    if (delimiterPresets.value !== 'custom') {
+                        delimiterInput.value = delimiter;
+                        delimiterInput.disabled = true;
+                    }
+                    
+                    // Update display mode
+                    if (displayMode) {
+                        displayMode.value = displayModeValue;
+                    }
+                    
+                    // Update show play icon checkbox
+                    if (showPlayIcon) {
+                        showPlayIcon.checked = showPlayIconValue;
+                    }
+                }
+                
+                // Load words and GLOBAL notes
+                const savedWords = localStorage.getItem('wordPlayer_words');
+                const savedNotes = localStorage.getItem('wordPlayer_globalNotes');  // 从全局备注加载
+                
+                if (savedWords) {
+                    words = JSON.parse(savedWords);
+                }
+                
+                if (savedNotes) {
+                    notes = JSON.parse(savedNotes);  // 全局备注
+                }
+                
+                // Load collections
+                const savedCollections = localStorage.getItem('wordPlayer_collections');
+                if (savedCollections) {
+                    collections = JSON.parse(savedCollections);
+                } else {
+                    // Create default collection
+                    const defaultCollection = {
+                        id: 'default_collection',
+                        name: '我的单词本',
+                        words: [...words]
+                    };
+                    collections.push(defaultCollection);
+                }
+                
+                // Load last collection ID
+                lastCollectionId = localStorage.getItem('wordPlayer_lastCollectionId');
+                
+                // Load speech rate
+                const savedSpeechRate = localStorage.getItem('wordPlayer_speechRate');
+                if (savedSpeechRate) {
+                    speechRate.value = parseFloat(savedSpeechRate).toFixed(1);
+                }
+                
+                // Load pause interval
+                const savedPauseInterval = localStorage.getItem('wordPlayer_pauseInterval');
+                if (savedPauseInterval) {
+                    pauseInterval.value = parseFloat(savedPauseInterval).toFixed(1);
+                }
+            }
+            
+            // Save data to localStorage
+            function saveData() {
+                // Save settings
+                const settings = {
+                    delimiter: delimiter,
+                    delimiterPreset: delimiterPresets.value,
+                    displayMode: displayModeValue,
+                    showPlayIcon: showPlayIconValue
+                };
+                localStorage.setItem('wordPlayer_settings', JSON.stringify(settings));
+                
+                // Save words and GLOBAL notes
+                localStorage.setItem('wordPlayer_words', JSON.stringify(words));
+                localStorage.setItem('wordPlayer_globalNotes', JSON.stringify(notes));  // 保存全局备注
+                
+                // Save collections
+                localStorage.setItem('wordPlayer_collections', JSON.stringify(collections));
+                
+                // Save last collection ID
+                if (currentCollectionId) {
+                    localStorage.setItem('wordPlayer_lastCollectionId', currentCollectionId);
+                }
+                
+                // Save speech rate
+                localStorage.setItem('wordPlayer_speechRate', speechRate.value);
+                
+                // Save pause interval
+                localStorage.setItem('wordPlayer_pauseInterval', pauseInterval.value);
+            }
+            
+            // Load last collection
+            function loadLastCollection() {
+                // Set current collection if available
+                if (lastCollectionId && collections.some(c => c.id === lastCollectionId)) {
+                    currentCollectionId = lastCollectionId;
+                } else if (collections.length > 0) {
+                    currentCollectionId = collections[0].id;
+                } else {
+                    // Create default collection
+                    const defaultCollection = {
+                        id: 'default_collection',
+                        name: '我的单词本',
+                        words: [...words]
+                    };
+                    collections.push(defaultCollection);
+                    currentCollectionId = defaultCollection.id;
+                }
+                
+                // Load the collection
+                const collection = collections.find(c => c.id === currentCollectionId);
+                if (collection) {
+                    words = [...collection.words];
+                    
+                    // Update UI
+                    const wordInput = document.getElementById('wordInput');
+                    if (wordInput) {
+                        let sym = {
+                            '\\s+': ' ',
+                            '\n': '\n',
+                        }[delimiter] || ',';
+                        
+                        wordInput.value = words.join(sym);
+                    }
+                    
+                    renderWordList();
+                    renderCollections();
+                    
+                    updateStatus(`已加载上次使用的收藏夹: ${collection.name}`);
+                }
+            }
+            
+            // Setup all event listeners
+            function setupEventListeners() {
+                // Word input and import
+                addWordsBtn.addEventListener('click', addWords);
+                resetBtn.addEventListener('click', resetAndImportWords);
+                resetBtn.addEventListener('click', function() {
+                    wordInput.focus();
+                });
+                wordInput.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+                        resetAndImportWords();
+                        e.preventDefault();
+                    }
+                });
+                
+                // Delimiter settings
+                delimiterInput.addEventListener('change', function() {
+                    delimiter = delimiterInput.value || ' ';
+                    saveData();
+                    updateStatus(`已更新单词分隔符: "${delimiter}"`);
+                });
+                
+                delimiterPresets.addEventListener('change', function() {
+                    if (this.value === 'custom') {
+                        delimiterInput.disabled = false;
+                        delimiterInput.focus();
+                    } else if (this.value === 'none') {
+                        // 无分隔符/句子模式
+                        delimiterInput.value = '';
+                        delimiterInput.disabled = true;
+                        delimiter = '';
+                        updateStatus('已选择无分隔符/句子模式');
+                    } else {
+                        delimiterInput.disabled = true;
+                        delimiter = this.value;
+                        delimiterInput.value = this.value;
+                        saveData();
+                        updateStatus(`已选择预设分隔符: ${getDelimiterName(this.value)}`);
+                    }
+                });
+                
+                // Display mode
+                if (displayMode) {
+                    displayMode.addEventListener('change', function() {
+                        displayModeValue = this.value;
+                        saveData();
+                        renderWordList();
+                    });
+                }
+                
+                // Show play icon toggle
+                if (showPlayIcon) {
+                    showPlayIcon.addEventListener('change', function() {
+                        showPlayIconValue = this.checked;
+                        saveData();
+                        renderWordList();
+                    });
+                }
+                
+                // Playback controls
+                playBtn.addEventListener('click', togglePlay);
+                abLoopBtn.addEventListener('click', toggleABLoop);
+                editModeBtn.addEventListener('click', toggleEditMode);
+                pauseInterval.addEventListener('change', validatePauseInterval);
+                speechRate.addEventListener('change', validateSpeechRate);
+                
+                // Voice selection
+                voiceSelect.addEventListener('change', changeVoice);
+                
+                // Collections
+                if (saveCollectionBtn) {
+                    saveCollectionBtn.addEventListener('click', saveCurrentCollection);
+                }
+                addCollectionBtn.addEventListener('click', addNewCollection);
+                
+                // Mobile menu
+                mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+                sidebarOverlay.addEventListener('click', closeMobileMenu);
+                
+                // Drag and drop for word list
+                wordList.addEventListener('dragstart', handleWordDragStart);
+                wordList.addEventListener('dragover', handleWordDragOver);
+                wordList.addEventListener('drop', handleWordDrop);
+                wordList.addEventListener('dragend', handleWordDragEnd);
+                
+                // Click and mouseover event for word list (for tooltip and AB loop)
+                wordList.addEventListener('click', handleWordListClick);
+                wordList.addEventListener('mouseover', handleWordListMouseOver);
+                wordList.addEventListener('dblclick', handleWordListDoubleClick);
+                
+                // Click event for hiding tooltip
+                document.addEventListener('click', function(e) {
+                    if (!e.target.closest('.word-item')) {
+                        hideTooltip();
+                    }
+                });
+            }
+            
+            // Toggle mobile menu (for small screens)
+            function toggleMobileMenu() {
+                sidebar.classList.toggle('visible');
+                sidebarOverlay.style.display = 'block';
+            }
+            
+            // Close mobile menu
+            function closeMobileMenu() {
+                sidebar.classList.remove('visible');
+                sidebarOverlay.style.display = 'none';
+            }
+            
+            // Validate pause interval input
+            function validatePauseInterval() {
+                let value = parseFloat(pauseInterval.value);
+                if (isNaN(value) || value < 0.1) {
+                    pauseInterval.value = 0.1;
+                } else if (value > 5) {
+                    pauseInterval.value = 5;
+                }
+                saveData();
+            }
+            
+            // Validate speech rate input
+            function validateSpeechRate() {
+                let value = parseFloat(speechRate.value);
+                if (isNaN(value) || value < 0.5) {
+                    speechRate.value = 0.5;
+                } else if (value > 2.0) {
+                    speechRate.value = 2.0;
+                }
+                saveData();
+            }
+            
+            // Get delimiter name
+            function getDelimiterName(value) {
+                const names = {
+                    '\\s+': '空格/换行/制表符',
+                    '\s+': '空格/换行/制表符',
+                    '[\\s,，.。]+': '空格/换行/制表符/逗号/句号',
+                    ',|，': '逗号(中英文)',
+                    '\n': '换行符',
+                    '[.。]': '句号(中英文)',
+                    'none': '无分隔符/句子模式',
+                    'custom': '自定义'
+                };
+                return names[value] || '自定义';
+            }
+            
+            // Split string using regex
+            function splitWithRegex(input, regexStr) {
+                try {
+                    if (regexStr === '') {
+                        // 无分隔符/句子模式: 按单词边界分割
+                        return input.match(/\b\w+\b/g) || [];
+                    }
+                    
+                    const regex = new RegExp(regexStr, 'g');
+                    return input.split(regex).filter(word => word.trim().length > 0);
+                } catch (e) {
+                    console.error('Invalid regex:', e);
+                    return input.split(' ').filter(word => word.trim().length > 0); // 回退到默认空格分隔
+                }
+            }
+            
+            // Load available voices
+            function loadVoices() {
+                voiceLoading = true;
+                voices = speechSynth.getVoices();
+                
+                if (voices.length === 0) {
+                    setTimeout(loadVoices, 100);
+                    return;
+                }
+                
+                populateVoiceList();
+                
+                // Find and select Ryan as default if available
+                const ryanVoice = voices.find(voice => 
+                    voice.name.toLowerCase().includes('ryan') && 
+                    (voice.lang === 'en-GB' || voice.lang.startsWith('en-GB'))
+                );
+                
+                if (ryanVoice) {
+                    selectVoice(ryanVoice);
+                    !isPlaying && updateStatus('已选择默认发音人: Ryan (英式男音)');
+                } else {
+                    // Fallback to other UK voices
+                    const ukVoice = voices.find(voice => 
+                        voice.lang === 'en-GB' || voice.lang.startsWith('en-GB')
+                    );
+                    
+                    if (ukVoice) {
+                        selectVoice(ukVoice);
+                        !isPlaying && updateStatus(`已选择默认发音人: ${ukVoice.name} (英式发音)`);
+                    } else if (voices.length > 0) {
+                        // Last resort: select first voice
+                        selectVoice(voices[0]);
+                        !isPlaying && updateStatus(`已选择默认发音人: ${voices[0].name}`);
+                    } else {
+                        updateStatus('错误: 未找到可用的语音', 'error');
+                    }
+                }
+                
+                voiceLoading = false;
+            }
+            
+            // Populate voice selection dropdown
+            function populateVoiceList() {
+                voiceSelect.innerHTML = '';
+                
+                // Group voices by language
+                const voiceGroups = {};
+                
+                voices.forEach(voice => {
+                    const lang = voice.lang.split('-')[0];
+                    if (!voiceGroups[lang]) {
+                        voiceGroups[lang] = [];
+                    }
+                    voiceGroups[lang].push(voice);
+                });
+                
+                // Add English voices first
+                if (voiceGroups['en']) {
+                    const optgroup = document.createElement('optgroup');
+                    optgroup.label = 'English Voices';
+                    
+                    voiceGroups['en'].forEach(voice => {
+                        const option = document.createElement('option');
+                        option.value = voice.voiceURI;
+                        option.textContent = `${voice.name} (${getVoiceGender(voice)})`;
+                        option.dataset.lang = voice.lang;
+                        optgroup.appendChild(option);
+                    });
+                    
+                    voiceSelect.appendChild(optgroup);
+                }
+                
+                // Add other language voices
+                Object.keys(voiceGroups).forEach(lang => {
+                    if (lang !== 'en') {
+                        const optgroup = document.createElement('optgroup');
+                        optgroup.label = `${getLanguageName(lang)} Voices`;
+                        
+                        voiceGroups[lang].forEach(voice => {
+                            const option = document.createElement('option');
+                            option.value = voice.voiceURI;
+                            option.textContent = `${voice.name} (${getVoiceGender(voice)})`;
+                            option.dataset.lang = voice.lang;
+                            optgroup.appendChild(option);
+                        });
+                        
+                        voiceSelect.appendChild(optgroup);
+                    }
+                });
+                
+                // If no voices found
+                if (voiceSelect.children.length === 0) {
+                    const option = document.createElement('option');
+                    option.textContent = '未找到可用语音';
+                    option.disabled = true;
+                    voiceSelect.appendChild(option);
+                }
+            }
+            
+            // Get gender description for voice
+            function getVoiceGender(voice) {
+                const nameLower = voice.name.toLowerCase();
+                
+                if (nameLower.includes('female') || nameLower.includes('susan') || 
+                    nameLower.includes('samantha') || nameLower.includes('queen')) {
+                    return '女声';
+                } else if (nameLower.includes('male') || nameLower.includes('daniel') || 
+                           nameLower.includes('ryan') || nameLower.includes('tom')) {
+                    return '男声';
+                } else {
+                    return voice.lang.startsWith('en-GB') ? '英式' : '其他';
+                }
+            }
+            
+            // Get language name
+            function getLanguageName(langCode) {
+                const languages = {
+                    'en': 'English',
+                    'zh': '中文',
+                    'es': 'Spanish',
+                    'fr': 'French',
+                    'de': 'German',
+                    'ja': 'Japanese',
+                    'ko': 'Korean'
+                };
+                
+                return languages[langCode] || langCode.toUpperCase();
+            }
+            
+            // Select specific voice
+            function selectVoice(voice) {
+                selectedVoice = voice;
+                
+                // Update dropdown selection
+                for (let i = 0; i < voiceSelect.options.length; i++) {
+                    const option = voiceSelect.options[i];
+                    if (option.value === voice.voiceURI) {
+                        voiceSelect.selectedIndex = i;
+                        break;
+                    }
+                }
+                
+                saveData();
+            }
+            
+            // Change voice handler
+            function changeVoice() {
+                const selectedURI = voiceSelect.value;
+                selectedVoice = voices.find(voice => voice.voiceURI === selectedURI);
+                
+                if (selectedVoice) {
+                    updateStatus(`已切换发音人: ${selectedVoice.name}`);
+                    saveData();
+                }
+            }
+            
+            // Start timer
+            function startTimer() {
+                if (timerInterval) clearInterval(timerInterval);
+                seconds = 0;
+                updateTimerDisplay();
+                timerInterval = setInterval(() => {
+                    seconds++;
+                    updateTimerDisplay();
+                }, 1000);
+            }
+            
+            // Stop timer
+            function stopTimer() {
+                if (timerInterval) {
+                    clearInterval(timerInterval);
+                    timerInterval = null;
+                }
+            }
+            
+            // Update timer display
+            function updateTimerDisplay() {
+                const minutes = Math.floor(seconds / 60);
+                const remainingSeconds = seconds % 60;
+                timerEl.textContent = 
+                    `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+                
+                // Also update status bar timer
+                const statusTimer = statusEl.querySelector('.timer');
+                if (statusTimer) {
+                    statusTimer.textContent = timerEl.textContent;
+                }
+            }
+            
+            // Play a single word
+            function playWord(word) {
+                if (voiceLoading) {
+                    updateStatus('错误: 语音引擎正在加载，请稍候...', 'error');
+                    return;
+                }
+                
+                // Create utterance
+                const utterance = new SpeechSynthesisUtterance(word);
+                
+                // Set selected voice
+                if (selectedVoice) {
+                    utterance.voice = selectedVoice;
+                }
+                
+                // Set speech parameters
+                utterance.rate = parseFloat(speechRate.value) || 0.9;
+                
+                // Speak
+                speechSynth.speak(utterance);
+                
+                // Update status
+                updateStatus(`正在播放: ${word}`);
+            }
+            
+            // Add words to existing list
+            function addWords() {
+                const input = wordInput.value.trim();
+                const notesInputValue = notesInput.value.trim();
+                
+                if (!input) {
+                    updateStatus('错误: 请输入单词列表', 'error');
+                    return;
+                }
+                
+                // Split by delimiter and filter empty strings
+                const newWords = splitWithRegex(input, delimiter);
+                
+                if (newWords.length === 0) {
+                    updateStatus('错误: 未检测到有效单词', 'error');
+                    return;
+                }
+                
+                // 检查重复单词
+                const existingWords = new Set(words);
+                const uniqueNewWords = [];
+                const duplicateWords = [];
+                
+                // 去重处理
+                const uniqueWordsSet = new Set();
+                newWords.forEach(word => {
+                    const trimmedWord = word.trim();
+                    if (trimmedWord && !uniqueWordsSet.has(trimmedWord)) {
+                        uniqueWordsSet.add(trimmedWord);
+                        if (existingWords.has(trimmedWord)) {
+                            duplicateWords.push(trimmedWord);
+                        } else {
+                            uniqueNewWords.push(trimmedWord);
+                        }
+                    }
+                });
+                
+                if (uniqueNewWords.length === 0) {
+                    updateStatus(`错误: 所有 ${newWords.length} 个单词都已存在于列表中`, 'error');
+                    return;
+                }
+                
+                // Process notes if provided
+                if (notesInputValue) {
+                    const inputNotes = splitWithRegex(notesInputValue, delimiter);
+                    if (inputNotes.length === newWords.length) {
+                        newWords.forEach((word, index) => {
+                            const trimmedWord = word.trim();
+                            if (inputNotes[index] && inputNotes[index].trim()) {
+                                notes[trimmedWord] = inputNotes[index].trim();
+                            }
+                        });
+                    } else {
+                        updateStatus('提示: 备注数量与单词数量不匹配，备注未导入', 'info');
+                    }
+                }
+                
+                // Add new words to existing list
+                words = [...words, ...uniqueNewWords];
+                
+                // Update current collection
+                updateCurrentCollection();
+                
+                // Render word list
+                renderWordList();
+                
+                // Reset playback
+                resetPlayback();
+                
+                // 构建状态消息，包括重复单词信息
+                let statusMessage = `已添加 ${uniqueNewWords.length} 个新单词 (总计 ${words.length} 个)`;
+                if (duplicateWords.length > 0) {
+                    statusMessage += ` - 跳过 ${duplicateWords.length} 个重复单词`;
+                }
+                
+                updateStatus(statusMessage);
+                saveData();
+            }
+            
+            // Reset and import words
+            function resetAndImportWords() {
+                const input = wordInput.value.trim();
+                const notesInputValue = notesInput.value.trim();
+                
+                if (!input) {
+                    updateStatus('错误: 请输入单词列表', 'error');
+                    return;
+                }
+                
+                // Split by delimiter and filter empty strings
+                const newWords = splitWithRegex(input, delimiter);
+                
+                if (newWords.length === 0) {
+                    updateStatus('错误: 未检测到有效单词', 'error');
+                    return;
+                }
+                
+                // 检查重复单词（虽然会替换，但可以显示信息）
+                const existingWords = new Set(words);
+                let duplicateCount = 0;
+                
+                // 去重处理
+                const uniqueWordsSet = new Set();
+                const uniqueNewWords = [];
+                
+                newWords.forEach(word => {
+                    const trimmedWord = word.trim();
+                    if (trimmedWord && !uniqueWordsSet.has(trimmedWord)) {
+                        uniqueWordsSet.add(trimmedWord);
+                        uniqueNewWords.push(trimmedWord);
+                        if (existingWords.has(trimmedWord)) {
+                            duplicateCount++;
+                        }
+                    }
+                });
+                
+                // Process notes if provided
+                if (notesInputValue) {
+                    const inputNotes = splitWithRegex(notesInputValue, delimiter);
+                    if (inputNotes.length === newWords.length) {
+                        newWords.forEach((word, index) => {
+                            const trimmedWord = word.trim();
+                            if (inputNotes[index] && inputNotes[index].trim()) {
+                                notes[trimmedWord] = inputNotes[index].trim();
+                            }
+                        });
+                    } else {
+                        updateStatus('提示: 备注数量与单词数量不匹配，备注未导入', 'info');
+                    }
+                }
+                
+                // Replace current words
+                words = uniqueNewWords;
+                
+                // Update current collection
+                updateCurrentCollection();
+                
+                // Render word list
+                renderWordList();
+                
+                // Reset playback
+                resetPlayback();
+                
+                // 构建状态消息，包括重复单词信息
+                let statusMessage = `成功导入 ${words.length} 个单词`;
+                if (duplicateCount > 0) {
+                    statusMessage += ` - ${duplicateCount} 个单词与原列表重复`;
+                }
+                
+                updateStatus(statusMessage);
+                saveData();
+            }
+            
+            // Reset playback state
+            function resetPlayback() {
+                isPlaying = false;
+                currentIndex = 0;
+                playBtn.innerHTML = '<i class="fas fa-play"></i> 播放';
+                playBtn.classList.remove('paused');
+                
+                // Clear any existing highlights
+                document.querySelectorAll('.word-item').forEach(el => {
+                    el.classList.remove('highlighted');
+                });
+                
+                // Cancel current speech if any
+                if (currentUtterance) {
+                    speechSynth.cancel();
+                    currentUtterance = null;
+                }
+                
+                // Stop timer
+                stopTimer();
+                
+                // 更新拖拽状态
+                updateDraggableState();
+            }
+            
+            // Reset all states when switching collections
+            function resetAllStates() {
+                // Reset playback
+                resetPlayback();
+                
+                // Exit edit mode
+                if (isEditMode) {
+                    toggleEditMode();
+                }
+                
+                // Exit AB loop mode
+                if (abLoopMode) {
+                    toggleABLoop();
+                }
+                
+                // Reset AB loop indices
+                abStartIndex = null;
+                abEndIndex = null;
+                
+                // Reset current index
+                currentIndex = 0;
+            }
+            
+            // Update current collection with latest words
+            function updateCurrentCollection() {
+                const collectionIndex = collections.findIndex(c => c.id === currentCollectionId);
+                if (collectionIndex !== -1) {
+                    collections[collectionIndex] = {
+                        ...collections[collectionIndex],
+                        words: [...words]
+                    };
+                }
+            }
+            
+            // Render word list
+            function renderWordList() {
+                wordList.innerHTML = '';
+                
+                if (words.length === 0) {
+                    wordList.innerHTML = '<div class="word-item">无单词列表 - 请导入单词</div>';
+                    return;
+                }
+                
+                words.forEach((word, index) => {
+                    const wordEl = document.createElement('div');
+                    wordEl.className = `word-item ${isEditMode ? 'edit-mode' : ''}`;
+                    wordEl.dataset.index = index;
+                    wordEl.dataset.word = word;
+                    
+                    // 设置可拖拽状态
+                    updateDraggableStateForElement(wordEl);
+                    
+                    // 创建单词内容容器
+                    const wordContentContainer = document.createElement('div');
+                    wordContentContainer.className = 'word-content-container';
+                    wordEl.appendChild(wordContentContainer);
+                    
+                    // 创建单词内容
+                    const wordContent = document.createElement('div');
+                    wordContent.className = 'word-content';
+                    wordContentContainer.appendChild(wordContent);
+                    
+                    // 创建操作按钮容器
+                    const wordActions = document.createElement('div');
+                    wordActions.className = 'word-actions';
+                    wordContentContainer.appendChild(wordActions);
+                    
+                    // 添加小喇叭播放按钮（如果设置为显示）
+                    if (showPlayIconValue) {
+                        const playBtn = document.createElement('i');
+                        playBtn.className = 'fas fa-volume-up word-play';
+                        playBtn.title = '播放发音';
+                        playBtn.addEventListener('click', function(e) {
+                            e.stopPropagation();
+                            playWord(word);
+                        });
+                        wordActions.appendChild(playBtn);
+                    }
+                    
+                    // 如果在编辑模式下，添加删除按钮
+                    if (isEditMode) {
+                        const deleteBtn = document.createElement('i');
+                        deleteBtn.className = 'fas fa-trash word-delete';
+                        deleteBtn.title = '删除单词';
+                        deleteBtn.addEventListener('click', function(e) {
+                            e.stopPropagation();
+                            deleteWord(word, index);
+                        });
+                        wordActions.appendChild(deleteBtn);
+                    }
+                    
+                    // Update word content based on display mode
+                    updateWordItemDisplay(wordEl, word);
+                    
+                    wordList.appendChild(wordEl);
+                });
+            }
+            
+            // Update draggable state for all word items
+            function updateDraggableState() {
+                document.querySelectorAll('.word-item').forEach(item => {
+                    updateDraggableStateForElement(item);
+                });
+            }
+            
+            // Update draggable state for a single word item
+            function updateDraggableStateForElement(item) {
+                if (!item.dataset.word) return;
+                
+                // 只在编辑模式下允许拖拽
+                if (isEditMode) {
+                    item.draggable = true;
+                    item.style.cursor = 'move';
+                    contentEl.classList.add('edit-mode-active');
+                } else {
+                    item.draggable = false;
+                    item.style.cursor = 'default';
+                    contentEl.classList.remove('edit-mode-active');
+                }
+            }
+            
+            // Update word item display based on mode
+            function updateWordItemDisplay(wordEl, word) {
+                const wordContent = wordEl.querySelector('.word-content');
+                const wordNotes = wordEl.querySelector('.word-notes');
+                
+                // 移除已有的备注元素
+                if (wordNotes) {
+                    wordNotes.remove();
+                }
+                
+                // 显示单词
+                wordContent.textContent = word;
+                
+                // 根据显示模式添加备注
+                if (notes[word] && (displayModeValue === 'word+note' || displayModeValue === 'note-only')) {
+                    const notesEl = document.createElement('div');
+                    notesEl.className = 'word-notes';
+                    notesEl.textContent = notes[word];
+                    
+                    if (displayModeValue === 'word+note') {
+                        // 在单词下方显示备注
+                        wordEl.appendChild(notesEl);
+                    } else if (displayModeValue === 'note-only') {
+                        // 只显示备注
+                        wordContent.textContent = notes[word];
+                    }
+                } else if (displayModeValue === 'note-only') {
+                    // 无备注时显示提示
+                    wordContent.textContent = '无备注';
+                    wordContent.style.opacity = '0.5';
+                }
+            }
+            
+            // Toggle edit mode
+            function toggleEditMode() {
+                isEditMode = !isEditMode;
+                
+                if (isEditMode) {
+                    editModeBtn.classList.add('active');
+                    editModeBtn.innerHTML = '<i class="fas fa-check"></i> 修改模式';
+                    wordList.classList.add('edit-mode');
+                    contentEl.classList.add('edit-mode-active');
+                    
+                    // 无论当前显示模式如何，强制显示所有备注
+                    document.querySelectorAll('.word-item').forEach(el => {
+                        const word = el.dataset.word;
+                        if (word) {
+                            // 添加删除按钮
+                            const wordActions = el.querySelector('.word-actions');
+                            if (wordActions) {
+                                const deleteBtn = document.createElement('i');
+                                deleteBtn.className = 'fas fa-trash word-delete';
+                                deleteBtn.title = '删除单词';
+                                deleteBtn.addEventListener('click', function(e) {
+                                    e.stopPropagation();
+                                    const wordEl = e.target.closest('.word-item');
+                                    if (wordEl) {
+                                        const word = wordEl.dataset.word;
+                                        const index = parseInt(wordEl.dataset.index);
+                                        deleteWord(word, index);
+                                    }
+                                });
+                                wordActions.appendChild(deleteBtn);
+                            }
+                        }
+                    });
+                    
+                    // Show hint with animation
+                    editModeHint.style.display = 'block';
+                    setTimeout(() => {
+                        editModeHint.style.opacity = '1';
+                    }, 10);
+                } else {
+                    editModeBtn.classList.remove('active');
+                    editModeBtn.innerHTML = '<i class="fas fa-edit"></i> 修改模式';
+                    wordList.classList.remove('edit-mode');
+                    contentEl.classList.remove('edit-mode-active');
+                    
+                    // Update all word items to hide notes
+                    document.querySelectorAll('.word-item').forEach(el => {
+                        const word = el.dataset.word;
+                        if (word) {
+                            const wordContent = el.querySelector('.word-content');
+                            if (wordContent) {
+                                updateWordItemDisplay(el, word);
+                            }
+                            
+                            // 移除删除按钮
+                            const wordActions = el.querySelector('.word-actions');
+                            if (wordActions) {
+                                const deleteBtn = wordActions.querySelector('.word-delete');
+                                if (deleteBtn) {
+                                    wordActions.removeChild(deleteBtn);
+                                }
+                            }
+                        }
+                    });
+                    
+                    // Hide hint
+                    editModeHint.style.opacity = '0';
+                    setTimeout(() => {
+                        editModeHint.style.display = 'none';
+                    }, 300);
+                }
+                
+                // 更新拖拽状态
+                updateDraggableState();
+            }
+            
+            // Delete a word from the list
+            function deleteWord(word, index) {
+                // 直接删除，不弹出确认框
+                // if (!confirm(`确定要删除单词 "${word}" 吗？`)) {
+                //    return;
+                // }
+                
+                // Remove word from array
+                words.splice(index, 1);
+                
+                // Update current collection
+                updateCurrentCollection();
+                
+                // Render word list
+                renderWordList();
+                
+                // Reset playback
+                resetPlayback();
+                
+                updateStatus(`已删除单词: ${word}`);
+                saveData();
+            }
+            
+            // Handle word list click for tooltip and AB loop
+            function handleWordListClick(e) {
+                const target = e.target;
+                const wordItem = target.closest('.word-item');
+                
+                if (!wordItem || !wordItem.dataset.word) return;
+                
+                const word = wordItem.dataset.word;
+                const index = parseInt(wordItem.dataset.index);
+                
+                // Handle AB loop mode
+                if (abLoopMode && !isPlaying) {
+                    handleABLoopClick(index, wordItem);
+                    return;
+                }
+                
+                // Handle tooltip based on display mode
+                if (displayModeValue === 'word-only' && notes[word]) {
+                    // In word-only mode, show note in tooltip when clicking on word
+                    showTooltip(e, notes[word]);
+                } else if (displayModeValue === 'note-only') {
+                    // In note-only mode, show word in tooltip when clicking on note
+                    showTooltip(e, word);
+                } else if (displayModeValue === 'word+note' && notes[word]) {
+                    // In word+note mode, show note in tooltip when clicking on word
+                    showTooltip(e, notes[word]);
+                }
+            }
+            
+            // Handle word list double click for editing notes
+            function handleWordListDoubleClick(e) {
+                const wordItem = e.target.closest('.word-item');
+                if (!wordItem || !wordItem.dataset.word || !isEditMode) return;
+                
+                const word = wordItem.dataset.word;
+                const currentNote = notes[word] || '';
+                
+                const newNote = prompt(`修改 "${word}" 的备注:`, currentNote);
+                if (newNote !== null) {
+                    if (newNote.trim() === '') {
+                        delete notes[word];
+                    } else {
+                        notes[word] = newNote.trim();
+                    }
+                    saveData();
+                    renderWordList();
+                    updateStatus(`已更新备注: ${word} - ${notes[word] || '无备注'}`);
+                }
+            }
+            
+            // Handle word list mouseover for AB loop preview
+            function handleWordListMouseOver(e) {
+                const wordItem = e.target.closest('.word-item');
+                
+                // Only handle in AB loop mode when start is set but end is not set
+                if (abLoopMode && abStartIndex !== null && abEndIndex === null && !isPlaying && wordItem) {
+                    const index = parseInt(wordItem.dataset.index);
+                    handleABLoopHover(index);
+                }
+            }
+            
+            // Show tooltip
+            function showTooltip(event, text) {
+                tooltip.textContent = text;
+                tooltip.style.display = 'block';
+                
+                // Get word item position relative to viewport
+                const wordItem = event.target.closest('.word-item');
+                if (!wordItem) return;
+                
+                const rect = wordItem.getBoundingClientRect();
+                
+                // Position tooltip below the word item
+                let left = rect.left + window.scrollX;
+                let top = rect.bottom + window.scrollY + 5;
+                
+                // Check if out of right boundary
+                if (left + tooltip.offsetWidth > window.innerWidth) {
+                    left = window.innerWidth - tooltip.offsetWidth - 10;
+                }
+                
+                // Check if out of bottom boundary
+                if (top + tooltip.offsetHeight > window.innerHeight) {
+                    top = rect.top + window.scrollY - tooltip.offsetHeight - 5;
+                }
+                
+                tooltip.style.left = left + 'px';
+                tooltip.style.top = top + 'px';
+            }
+            
+            // Hide tooltip
+            function hideTooltip() {
+                tooltip.style.display = 'none';
+            }
+            
+            // Toggle AB loop mode
+            function toggleABLoop() {
+                abLoopMode = !abLoopMode;
+                
+                if (abLoopMode) {
+                    abLoopBtn.classList.add('active');
+                    abLoopBtn.innerHTML = '<i class="fas fa-check"></i> A-B循环';
+                    updateStatus('已启用A-B循环模式 - 请点击第一个单词作为起点');
+                    abStartIndex = null;
+                    abEndIndex = null;
+                    clearABHighlights();
+                    
+                    // Reset playback when entering AB mode
+                    resetPlayback();
+                } else {
+                    abLoopBtn.classList.remove('active');
+                    abLoopBtn.innerHTML = '<i class="fas fa-arrows-alt-h"></i> A-B循环';
+                    updateStatus('已禁用A-B循环模式');
+                    abStartIndex = null;
+                    abEndIndex = null;
+                    clearABHighlights();
+                    
+                    // Reset playback when exiting AB mode
+                    resetPlayback();
+                }
+            }
+            
+            // Clear AB loop highlights
+            function clearABHighlights() {
+                document.querySelectorAll('.word-item').forEach(el => {
+                    el.classList.remove('ab-start', 'ab-end', 'ab-range', 'ab-range-hover');
+                });
+            }
+            
+            // Handle AB loop click
+            function handleABLoopClick(index, wordEl) {
+                if (abStartIndex === null) {
+                    // Set start point
+                    abStartIndex = index;
+                    wordEl.classList.add('ab-start');
+                    updateStatus(`已设置起点: ${words[index]} - 请点击最后一个单词作为终点`);
+                } else if (abEndIndex === null) {
+                    // Set end point
+                    abEndIndex = index;
+                    wordEl.classList.add('ab-end');
+                    
+                    // Highlight range
+                    const start = Math.min(abStartIndex, abEndIndex);
+                    const end = Math.max(abStartIndex, abEndIndex);
+                    
+                    for (let i = start; i <= end; i++) {
+                        const el = document.querySelector(`.word-item[data-index="${i}"]`);
+                        if (el) el.classList.add('ab-range');
+                    }
+                    
+                    updateStatus(`已设置范围: ${words[start]} - ${words[end]} - 点击播放按钮循环播放此范围`);
+                } else {
+                    // Reset and start over
+                    clearABHighlights();
+                    abStartIndex = index;
+                    abEndIndex = null;
+                    wordEl.classList.add('ab-start');
+                    updateStatus(`已重置起点: ${words[index]} - 请点击最后一个单词作为终点`);
+                }
+            }
+            
+            // Handle AB loop hover
+            function handleABLoopHover(index) {
+                clearABHighlights();
+                
+                const start = Math.min(abStartIndex, index);
+                const end = Math.max(abStartIndex, index);
+                
+                // Always show start point
+                const startEl = document.querySelector(`.word-item[data-index="${abStartIndex}"]`);
+                if (startEl) startEl.classList.add('ab-start');
+                
+                // Highlight range
+                for (let i = start; i <= end; i++) {
+                    const el = document.querySelector(`.word-item[data-index="${i}"]`);
+                    if (el) el.classList.add('ab-range-hover');
+                }
+            }
+            
+            // Toggle play/pause
+            function togglePlay() {
+                if (words.length === 0) {
+                    updateStatus('错误: 请先导入单词列表', 'error');
+                    return;
+                }
+                
+                if (voiceLoading) {
+                    updateStatus('错误: 语音引擎正在加载，请稍候...', 'error');
+                    return;
+                }
+                
+                isPlaying = !isPlaying;
+                
+                if (isPlaying) {
+                    playBtn.innerHTML = '<i class="fas fa-pause"></i> 暂停';
+                    playBtn.classList.add('paused');
+
+                    let highlightIndex = currentIndex
+                    
+                    // Reset currentIndex to AB start if in AB loop mode
+                    if (abLoopMode && abStartIndex !== null && abEndIndex !== null) {
+                        const start = Math.min(abStartIndex, abEndIndex);
+                        const end = Math.max(abStartIndex, abEndIndex);
+                        const rangeLength = end - start + 1;
+                        // AB 循环 currentIndex是从0 ~ rangeLength, 超出后需要重置 currentIndex
+                        highlightIndex = start + (currentIndex % rangeLength);
+                        if (currentIndex >= rangeLength) {
+                            currentIndex = 0;
+                            highlightIndex = start
+                        }
+                        updateStatus(`正在播放A-B循环: ${words[start]} - ${words[Math.max(abStartIndex, abEndIndex)]}`);
+                    } else if (currentIndex >= words.length) {
+                        currentIndex = 0;
+                        highlightIndex = 0;
+                    }
+                    
+                    // Highlight the first word immediately
+                    highlightWord(highlightIndex);
+                    
+                    // Wait for pause interval before playing
+                    const pauseSec = parseFloat(pauseInterval.value) || 0.5;
+                    setTimeout(playCurrentWord, pauseSec * 1000);
+                    
+                    // Start timer
+                    startTimer();
+                } else {
+                    playBtn.innerHTML = '<i class="fas fa-play"></i> 播放';
+                    playBtn.classList.remove('paused');
+                    // updateStatus('播放已暂停');
+                    
+                    // Cancel current speech
+                    if (currentUtterance) {
+                        speechSynth.cancel();
+                        currentUtterance = null;
+                    }
+                    
+                    // Stop timer
+                    stopTimer();
+                }
+                
+                // 更新拖拽状态
+                updateDraggableState();
+            }
+            
+            // Highlight specific word
+            function highlightWord(index) {
+                // Remove highlight from all words
+                document.querySelectorAll('.word-item').forEach(el => {
+                    el.classList.remove('highlighted');
+                });
+                
+                // Highlight current word
+                const wordEl = document.querySelector(`.word-item[data-index="${index}"]`);
+                if (wordEl) {
+                    wordEl.classList.add('highlighted');
+                    
+                    // Scroll into view if needed
+                    const rect = wordEl.getBoundingClientRect();
+                    const containerRect = wordList.getBoundingClientRect();
+                    
+                    if (rect.top < containerRect.top || rect.bottom > containerRect.bottom) {
+                        wordEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }
+                }
+                
+                // Update status with word and note
+                const word = words[index];
+                const note = notes[word] ? `<span class="status-note">"${notes[word]}"</span>` : '';
+                statusEl.innerHTML = `
+                    <i class="fas fa-volume-up"></i> 
+                    <span>正在播放: <span class="status-word">${word}</span></span>
+                    ${note}
+                    <span class="timer" id="timer">${timerEl.textContent}</span>
+                `;
+            }
+            
+            // Play current word
+            function playCurrentWord() {
+                if (!isPlaying || words.length === 0) return;
+                
+                
+                function getWordIndex(_currentIndex){
+                    let _wordIndex
+                    if (abLoopMode && abStartIndex !== null && abEndIndex !== null) {
+                        let start, end;
+                        // A-B loop mode
+                        start = Math.min(abStartIndex, abEndIndex);
+                        end = Math.max(abStartIndex, abEndIndex);
+                        const rangeLength = end - start + 1;
+                        
+                        // Calculate the word index within the AB range
+                        _wordIndex = start + (_currentIndex % rangeLength);
+                        
+                        // Ensure currentIndex resets after a full loop
+                        if (_currentIndex >= rangeLength) {
+                            _wordIndex = start;
+                            _currentIndex = 0;
+                        }
+                    } else {
+                        // Normal mode
+                        _wordIndex = _currentIndex % words.length;
+                        
+                        // Reset currentIndex after a full loop
+                        if (_currentIndex >= words.length) {
+                            _wordIndex = 0;
+                            _currentIndex = 0;
+                        }
+                    }
+                    return {wordIndex: _wordIndex,currentIndex: _currentIndex}
+                }
+                
+                let tmp = getWordIndex(currentIndex);
+                wordIndex = tmp.wordIndex;
+                currentIndex = tmp.currentIndex;
+                
+                // Get current word
+                const word = words[wordIndex];
+                
+                // Create utterance
+                const utterance = new SpeechSynthesisUtterance(word);
+                currentUtterance = utterance;
+                
+                // Set selected voice
+                if (selectedVoice) {
+                    utterance.voice = selectedVoice;
+                }
+                
+                // Set speech parameters
+                utterance.rate = parseFloat(speechRate.value) || 0.9;
+                
+                // On end event - immediately highlight next word
+                utterance.onend = function() {
+                    // Move to next word
+                    currentIndex++;
+                    
+                    // Immediately highlight next word, 修改播放顺序相关逻辑时需要特别注意这里
+                    highlightWord(getWordIndex(currentIndex).wordIndex);
+                    
+                    // Wait for pause interval before playing next word
+                    const pauseSec = parseFloat(pauseInterval.value) || 0.5;
+                    setTimeout(playCurrentWord, pauseSec * 1000);
+                };
+                
+                // Handle "interrupted" error (normal when canceling speech)
+                utterance.onerror = function(e) {
+                    if (e.error === 'interrupted') {
+                        // This is normal when canceling speech, don't show error
+                        return;
+                    }
+                    
+                    console.error('Speech error:', e);
+                    updateStatus(`播放错误: ${e.error}`, 'error');
+                    isPlaying = false;
+                    playBtn.innerHTML = '<i class="fas fa-play"></i> 播放';
+                    playBtn.classList.remove('paused');
+                    
+                    // 更新拖拽状态
+                    updateDraggableState();
+                };
+                
+                // Speak
+                speechSynth.speak(utterance);
+            }
+            
+            // Update status message
+            function updateStatus(message, type = 'info') {
+                statusEl.innerHTML = `
+                    <i class="fas ${type === 'error' ? 'fa-exclamation-circle' : 'fa-info-circle'}"></i> 
+                    <span>${message}</span>
+                    <span class="timer" id="timer">${timerEl.textContent}</span>
+                `;
+                
+                if (type === 'error') {
+                    statusEl.style.color = '#ff6b6b';
+                } else {
+                    statusEl.style.color = '#c5c5c5';
+                }
+            }
+            
+            // Drag and drop handlers for words
+            let draggedWordIndex = null;
+            
+            function handleWordDragStart(e) {
+                if (!isEditMode) {
+                    e.preventDefault();
+                    return;
+                }
+                
+                draggedWordIndex = parseInt(e.target.closest('.word-item').dataset.index);
+                e.target.closest('.word-item').classList.add('dragging');
+            }
+            
+            function handleWordDragOver(e) {
+                if (!isEditMode) {
+                    e.preventDefault();
+                    return;
+                }
+                
+                e.preventDefault();
+                const draggableElements = Array.from(wordList.querySelectorAll('.word-item:not(.dragging)'));
+                const afterElement = getDragAfterElement(wordList, e.clientY, e.clientX, draggableElements);
+                const draggable = document.querySelector('.dragging');
+                
+                if (afterElement == null) {
+                    wordList.appendChild(draggable);
+                } else {
+                    wordList.insertBefore(draggable, afterElement);
+                }
+            }
+            
+            function handleWordDrop(e) {
+                if (!isEditMode) {
+                    e.preventDefault();
+                    return;
+                }
+                
+                // Update words array based on new order
+                const newWords = [];
+                document.querySelectorAll('.word-item').forEach((item, index) => {
+                    const word = item.dataset.word;
+                    if (word) {
+                        newWords.push(word);
+                    }
+                });
+                
+                words = newWords;
+                
+                // Update current collection
+                updateCurrentCollection();
+                
+                renderWordList();
+                saveData();
+            }
+            
+            function handleWordDragEnd(e) {
+                if (!isEditMode) {
+                    e.preventDefault();
+                    return;
+                }
+                
+                document.querySelectorAll('.word-item').forEach(el => {
+                    el.classList.remove('dragging');
+                });
+            }
+            
+            function getDragAfterElement(container, y, x, draggableElements) {
+                return draggableElements.reduce((closest, child) => {
+                    const box = child.getBoundingClientRect();
+                    // Calculate vertical and horizontal distance
+                    const verticalOffset = y - box.top - box.height / 2;
+                    const horizontalOffset = x - box.left - box.width / 2;
+                    
+                    // Calculate combined distance (can adjust weights)
+                    const totalOffset = Math.abs(verticalOffset) * 0.7 + Math.abs(horizontalOffset) * 0.3;
+                    
+                    if (totalOffset < closest.offset) {
+                        return { offset: totalOffset, element: child };
+                    } else {
+                        return closest;
+                    }
+                }, { offset: Number.POSITIVE_INFINITY, element: null }).element;
+            }
+            
+            // Collections functionality
+            function renderCollections() {
+                collectionsList.innerHTML = '';
+                
+                if (collections.length === 0) {
+                    collectionsList.innerHTML = '<div class="collection-item">无收藏夹 - 点击+添加</div>';
+                    return;
+                }
+                
+                collections.forEach((collection, index) => {
+                    const collectionEl = document.createElement('div');
+                    collectionEl.className = `collection-item ${collection.id === currentCollectionId ? 'active' : ''}`;
+                    collectionEl.draggable = true;
+                    collectionEl.dataset.id = collection.id;
+                    
+                    // Collection content
+                    const headerEl = document.createElement('div');
+                    headerEl.className = 'collection-header';
+                    
+                    const nameEl = document.createElement('div');
+                    nameEl.className = 'collection-name';
+                    nameEl.textContent = collection.name;
+                    headerEl.appendChild(nameEl);
+                    
+                    const countEl = document.createElement('span');
+                    countEl.className = 'collection-count';
+                    countEl.textContent = collection.words.length;
+                    headerEl.appendChild(countEl);
+                    
+                    const actionsEl = document.createElement('div');
+                    actionsEl.className = 'collection-actions';
+                    
+                    const renameBtn = document.createElement('i');
+                    renameBtn.className = 'fas fa-edit';
+                    renameBtn.title = '重命名';
+                    renameBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        renameCollection(collection.id);
+                    });
+                    actionsEl.appendChild(renameBtn);
+                    
+                    const deleteBtn = document.createElement('i');
+                    deleteBtn.className = 'fas fa-trash';
+                    deleteBtn.title = '删除';
+                    deleteBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        deleteCollection(collection.id);
+                    });
+                    actionsEl.appendChild(deleteBtn);
+                    
+                    headerEl.appendChild(actionsEl);
+                    collectionEl.appendChild(headerEl);
+                    
+                    // Click to load collection
+                    collectionEl.addEventListener('click', () => {
+                        loadCollection(collection.id);
+                    });
+                    
+                    collectionsList.appendChild(collectionEl);
+                });
+            }
+            
+            function saveCurrentCollection() {
+                const collectionName = prompt('请输入收藏夹名称:', '我的单词集');
+                if (!collectionName || collectionName.trim() === '') return;
+                
+                // Check if collection already exists
+                const existingIndex = collections.findIndex(c => c.name === collectionName);
+                if (existingIndex !== -1) {
+                    if (!confirm('该名称的收藏夹已存在，是否覆盖？')) {
+                        return;
+                    }
+                    collections[existingIndex] = {
+                        id: collections[existingIndex].id,
+                        name: collectionName,
+                        words: [...words]
+                    };
+                } else {
+                    // Add new collection
+                    collections.push({
+                        id: 'col_' + Date.now(),
+                        name: collectionName,
+                        words: [...words]
+                    });
+                }
+                
+                renderCollections();
+                saveData();
+                updateStatus(`已保存到收藏夹: ${collectionName}`);
+            }
+            
+            function loadCollection(collectionId) {
+                const collection = collections.find(c => c.id === collectionId);
+                if (!collection) return;
+                
+                // Reset all states
+                resetAllStates();
+                
+                // Save last collection ID
+                currentCollectionId = collectionId;
+                saveData();
+                
+                words = [...collection.words];
+                
+                // Update UI
+                const wordInput = document.getElementById('wordInput');
+                if (wordInput) {
+                    let sym = {
+                        '\\s+': ' ',
+                        '\n': '\n',
+                    }[delimiter] || ',';
+
+                    wordInput.value = words.join(sym);
+                }
+                
+                renderWordList();
+                renderCollections();
+                
+                updateStatus(`已加载收藏夹: ${collection.name}`);
+            }
+            
+            function addNewCollection() {
+                const collectionName = prompt('请输入新收藏夹名称:', '新单词集');
+                if (!collectionName || collectionName.trim() === '') return;
+                
+                collections.push({
+                    id: 'col_' + Date.now(),
+                    name: collectionName,
+                    words: [...words]
+                });
+                
+                renderCollections();
+                saveData();
+                updateStatus(`已创建新收藏夹: ${collectionName}`);
+            }
+            
+            function renameCollection(collectionId) {
+                const collection = collections.find(c => c.id === collectionId);
+                if (!collection) return;
+                
+                const newName = prompt('请输入新名称:', collection.name);
+                if (!newName || newName.trim() === '') return;
+                
+                collection.name = newName;
+                renderCollections();
+                saveData();
+                updateStatus(`已重命名收藏夹: ${newName}`);
+            }
+            
+            function deleteCollection(collectionId) {
+                if (!confirm('确定要删除这个收藏夹吗？')) return;
+                
+                collections = collections.filter(c => c.id !== collectionId);
+                
+                if (currentCollectionId === collectionId) {
+                    currentCollectionId = collections.length > 0 ? collections[0].id : null;
+                    if (currentCollectionId) {
+                        loadCollection(currentCollectionId);
+                    } else {
+                        words = [];
+                        renderWordList();
+                    }
+                }
+                
+                renderCollections();
+                saveData();
+                updateStatus('收藏夹已删除');
+            }
+            
+            // Drag and drop handlers for collections
+            let draggedCollectionId = null;
+            
+            function handleCollectionDragStart(e) {
+                draggedCollectionId = e.target.dataset.id;
+                e.target.classList.add('dragging');
+            }
+            
+            function handleCollectionDragOver(e) {
+                e.preventDefault();
+                const afterElement = getCollectionDragAfterElement(collectionsList, e.clientY);
+                const draggable = document.querySelector('.dragging');
+                
+                if (afterElement == null) {
+                    collectionsList.appendChild(draggable);
+                } else {
+                    collectionsList.insertBefore(draggable, afterElement);
+                }
+            }
+            
+            function handleCollectionDrop() {
+                // Update collections order
+                const newOrder = [];
+                document.querySelectorAll('.collection-item').forEach(item => {
+                    const id = item.dataset.id;
+                    const collection = collections.find(c => c.id === id);
+                    if (collection) {
+                        newOrder.push(collection);
+                    }
+                });
+                
+                collections = newOrder;
+                renderCollections();
+                saveData();
+            }
+            
+            function handleCollectionDragEnd() {
+                document.querySelectorAll('.collection-item').forEach(el => {
+                    el.classList.remove('dragging');
+                });
+            }
+            
+            function getCollectionDragAfterElement(container, y) {
+                const draggableElements = [...container.querySelectorAll('.collection-item:not(.dragging)')];
+                
+                return draggableElements.reduce((closest, child) => {
+                    const box = child.getBoundingClientRect();
+                    const offset = y - box.top - box.height / 2;
+                    
+                    if (offset < 0 && offset > closest.offset) {
+                        return { offset: offset, element: child };
+                    } else {
+                        return closest;
+                    }
+                }, { offset: Number.NEGATIVE_INFINITY }).element;
+            }
+            
+            // Initialize the app
+            init();
+            
+            // Handle voice loading
+            if (speechSynth.onvoiceschanged !== undefined) {
+                speechSynth.onvoiceschanged = function() {
+                    loadVoices();
+                    console.log('Voices loaded');
+                };
+            }
+        });
+    </script>
+</body>
+</html>
