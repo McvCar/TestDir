@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>英语文章对比工具</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .description {
+            color: #7f8c8d;
+            max-width: 600px;
+            margin: 0 auto 20px;
+        }
+        
+        .input-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .article-input {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .article-input h3 {
+            margin-bottom: 10px;
+            color: #3498db;
+        }
+        
+        textarea {
+            width: 100%;
+            height: 250px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            resize: vertical;
+            transition: border-color 0.3s;
+        }
+        
+        textarea:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+        }
+        
+        .button-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #2980b9;
+        }
+        
+        .result-section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .result-section h3 {
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        #result {
+            min-height: 80px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 6px;
+            border: 1px solid #e9ecef;
+            word-wrap: break-word;
+            line-height: 1.8;
+        }
+        
+        .info {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #e8f4fd;
+            border-radius: 6px;
+            font-size: 14px;
+            color: #2c3e50;
+        }
+        
+        @media (max-width: 768px) {
+            .input-section {
+                flex-direction: column;
+            }
+            
+            .article-input {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>英语文章对比工具</h1>
+            <p class="description">将A文章与B文章对比，找出B文章中A文章不存在的单词</p>
+        </header>
+        
+        <div class="input-section">
+            <div class="article-input">
+                <h3>文章 A</h3>
+                <textarea id="articleA" placeholder="请输入第一篇文章（英语）..."></textarea>
+            </div>
+            <div class="article-input">
+                <h3>文章 B</h3>
+                <textarea id="articleB" placeholder="请输入第二篇文章（英语）..."></textarea>
+            </div>
+        </div>
+        
+        <div class="button-container">
+            <button id="compareBtn">对比文章</button>
+        </div>
+        
+        <div class="result-section">
+            <h3>对比结果：B文章中A文章不存在的单词</h3>
+            <div id="result">对比结果将显示在这里...</div>
+            <div class="info">
+                <p><strong>使用说明：</strong> 输入两篇英语文章，点击对比按钮后，系统会找出B文章中不存在于A文章的单词，并以空格分隔显示。</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('compareBtn').addEventListener('click', function() {
+            const articleA = document.getElementById('articleA').value;
+            const articleB = document.getElementById('articleB').value;
+            const resultElement = document.getElementById('result');
+            
+            if (!articleA.trim() || !articleB.trim()) {
+                resultElement.textContent = '请确保两篇文章都已输入内容！';
+                resultElement.style.color = '#e74c3c';
+                return;
+            }
+            
+            // 处理文章A的单词
+            const wordsA = processText(articleA);
+            
+            // 处理文章B的单词
+            const wordsB = processText(articleB);
+            
+            // 找出B中有但A中没有的单词
+            const uniqueWordsInB = findUniqueWords(wordsA, wordsB);
+            
+            // 显示结果
+            if (uniqueWordsInB.length === 0) {
+                resultElement.textContent = 'B文章中所有单词都出现在A文章中。';
+                resultElement.style.color = '#27ae60';
+            } else {
+                resultElement.textContent = uniqueWordsInB.join(' ');
+                resultElement.style.color = '#2c3e50';
+            }
+        });
+        
+        // 处理文本：转换为小写，分割为单词，去除标点符号
+        function processText(text) {
+            return text.toLowerCase()
+                      .replace(/[^\w\s]/g, ' ')  // 将非单词字符替换为空格
+                      .split(/\s+/)             // 按空格分割
+                      .filter(word => word.length > 0);  // 过滤掉空字符串
+        }
+        
+        // 找出B中有但A中没有的单词
+        function findUniqueWords(wordsA, wordsB) {
+            const setA = new Set(wordsA);
+            const uniqueWords = [];
+            const addedWords = new Set();
+            
+            for (const word of wordsB) {
+                if (!setA.has(word) && !addedWords.has(word)) {
+                    uniqueWords.push(word);
+                    addedWords.add(word);
+                }
+            }
+            
+            return uniqueWords;
+        }
+    </script>
+</body>
+</html>
