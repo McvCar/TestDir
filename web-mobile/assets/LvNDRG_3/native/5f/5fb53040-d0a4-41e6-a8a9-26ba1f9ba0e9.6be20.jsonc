@@ -1,0 +1,110 @@
+{
+	// 游戏超时时间
+	"timeout": 180,
+	// 标题
+	"name": "双生红颜",
+	// 提示配置
+	"hint": {
+		// 提示类型, 0 默认提示、1图片、2圈起来
+		"hintType": 0,
+		"hintText": []
+	},
+
+	// 关卡一些初始化: 输赢条件、配置动画、
+	"rule": [],
+
+	// 开启翻页模式
+	"pageCfg": {
+		// 翻页node
+		"pageNode": "pageView",
+		"bgNode": "bgc",
+		"pages": [
+			{  "finish": "page_0_4", "bg": "page_0/4.bg",
+                "complete": { "mode": "chat", "text": "共赏满城灯火，同醉人间风月" , "sound": "4", "time": 3, "node": "msgBg"}, 
+                "select": [
+                    "!seq",
+                    { "mode": "page", "sl_item": "4.0", "place":"drag_4_0", "sk_idxs":["ske_4", "4_0toufa"]},
+                    { "mode": "page", "sl_item": "4.1", "place":"drag_4_1", "sk_idxs":["ske_4", "4_1toufa"]}
+                ]
+            },
+            {  "finish": "page_1_5", "bg": "page_0/5.bg",
+                "complete": { "mode": "chat", "text": "耳朵竖得这么高，在偷听哪只蝴蝶的悄悄话呀？" , "sound": "5", "time": 5, "node": "msgBg"}, 
+                "select": [
+                    "!seq",
+                    { "mode": "page", "sl_item": "5.0", "place":"drag_5_0", "sk_idxs":["ske_5", "5_0toufa"]},
+                    { "mode": "page", "sl_item": "5.1", "place":"drag_5_1", "sk_idxs":["ske_5", "5_1toufa"]}
+                ]
+            },
+            {  "finish": "page_2_8.2", "bg": "page_0/8.2.bg",
+                "complete": { "mode": "chat", "text": "桃之妖妖，灼灼其华" , "sound": "8.2", "time": 3, "node": "msgBg"}, 
+                "select": [
+                    "!seq",
+                    { "mode": "page", "sl_item": "8-2.0", "place":"drag_8.2_0", "sk_idxs":["ske_8.2", "8_2_0toufa"]},
+                    { "mode": "page", "sl_item": "8-2.1", "place":"drag_8.2_1", "sk_idxs":["ske_8.2", "8_2_1toufa"]}
+                ]
+            },
+            {  "finish": "page_3_13", "bg": "page_0/5.bg",
+                "complete": { "mode": "chat", "text": "今天是花神帷帽闺蜜局" , "sound": "13", "time": 3, "node": "msgBg"}, 
+                "select": [
+                    "!seq",
+                    { "mode": "page", "sl_item": "13.0", "place":"drag_13_0", "sk_idxs":["ske_13", "13.0toufa"]},
+                    { "mode": "page", "sl_item": "13.1", "place":"drag_13_1", "sk_idxs":["ske_13", "13.1toufa"]}
+                ]
+            },
+            {  "finish": "page_4_18", "bg": "page_0/18.bg",
+                "complete": { "mode": "chat", "text": "这一世，我为你绾发画眉" , "sound": "18", "time": 3, "node": "msgBg"}, 
+                "select": [
+                    "!seq",
+                    { "mode": "page", "sl_item": "18.0", "place":"drag_18_0", "sk_idxs":["ske_18", "18_0toufa"]},
+                    { "mode": "page", "sl_item": "18.1", "place":"drag_18_1", "sk_idxs":["ske_18", "18_1toufa"]}
+                ]
+            },
+            {  "finish": "page_5_29", "bg": "page_0/29.bg",
+                "complete": { "mode": "chat", "text": "听闻苗疆女子最擅蛊惑之术" , "sound": "29", "time": 3, "node": "msgBg"}, 
+                "select": [
+                    "!seq",
+                    { "mode": "page", "sl_item": "29.0", "place":"drag_29_0", "sk_idxs":["ske_29", "29.0toufa"]},
+                    { "mode": "page", "sl_item": "29.1", "place":"drag_29_1", "sk_idxs":["ske_29", "29.1toufa"]}
+                ]
+            },
+            {  "finish": "page_6_31", "bg": "page_0/5.bg",
+                "complete": { "mode": "chat", "text": "今世簪花，来世漂亮" , "sound": "31", "time": 2, "node": "msgBg"}, 
+                "select": [
+                    "!seq",
+                    { "mode": "page", "sl_item": "31.0", "place":"drag_31_0", "sk_idxs":["ske_31", "31_0toufa"]},
+                    { "mode": "page", "sl_item": "31.1", "place":"drag_31_1", "sk_idxs":["ske_31", "31_1toufa"]}
+                ]
+            },
+            {  "finish": "page_7_32", "bg": "page_0/32.bg",
+                "complete": { "mode": "chat", "text": "金冠映夜，共赏人间灯火" , "sound": "32", "time": 3, "node": "msgBg"}, 
+                "select": [
+                    "!seq",
+                    { "mode": "page", "sl_item": "32.0", "place":"drag_32_0", "sk_idxs":["ske_32", "32_0toufa"]},
+                    { "mode": "page", "sl_item": "32.1", "place":"drag_32_1", "sk_idxs":["ske_32", "32_1toufa"]}
+                ]
+            },
+            {  "finish": "page_8_35", "bg": "page_0/35.bg",
+                "complete": { "mode": "chat", "text": "今天不当公主，是限定格格" , "sound": "35", "time": 3, "node": "msgBg"}, 
+                "select": [
+                    "!seq",
+                    { "mode": "page", "sl_item": "35.0", "place":"drag_35_0", "sk_idxs":["ske_35", "35_0toufa"]},
+                    { "mode": "page", "sl_item": "35.1", "place":"drag_35_1", "sk_idxs":["ske_35", "35_1toufa"]}
+                ]
+            },
+            {  "finish": "page_9_40", "bg": "page_0/40.bg",
+                "complete": { "mode": "chat", "text": "暗夜双姝，权倾后宫" , "sound": "40", "time": 2, "node": "msgBg"}, 
+                "select": [
+                    "!seq",
+                    { "mode": "page", "sl_item": "40.0", "place":"drag_40_0", "sk_idxs":["ske_40", "40_0toufa"]},
+                    { "mode": "page", "sl_item": "40.1", "place":"drag_40_1", "sk_idxs":["ske_40", "40_1toufa"]}
+                ]
+            }
+		]
+	},
+
+	// 关卡逻辑流程控制, cmds列表必须以 "seq" 或 "!seq"开头
+	// "seq" 代表按顺序执行列表逻辑, "!seq" 代表并行执行列表逻辑
+	"cmds": [
+		"seq" 			// 顺序执行列表逻辑
+	]
+}
