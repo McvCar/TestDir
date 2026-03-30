@@ -1,0 +1,111 @@
+{
+	// 游戏超时时间
+	"timeout": 180,
+	// 标题
+	"name": "双生姐妹花",
+	"music": "古风（红马）",
+	// 提示配置
+	"hint": {
+		// 提示类型, 0 默认提示、1图片、2圈起来
+		"hintType": 2,
+		"hintText": []
+	},
+
+	// 关卡一些初始化: 输赢条件、配置动画、
+	"rule": [],
+
+	// 开启翻页模式
+	"pageCfg": {
+		// 翻页node
+		"pageNode": "pageView",
+		"bgNode": "bgc",
+		"pages": [
+			{  "finish": "page_0_3", "bg": "page_0/3.bg",
+                "complete": { "mode": "chat", "text": "繁花团扇，人间春色皆为你我而来" , "sound": "3", "time": 4, "node": "msgBg"}, 
+                "select": [
+                    "!seq",
+                    { "mode": "page", "sl_item": "3.0", "place":"drag_3_0", "sk_idxs":["ske_3", "3.0toufa"]},
+                    { "mode": "page", "sl_item": "3.1", "place":"drag_3_1", "sk_idxs":["ske_3", "3.1toufa"]}
+                ]
+            },
+            {  "finish": "page_1_7", "bg": "page_0/3.bg",
+                "complete": { "mode": "chat", "text": "去赴一场跨越千年的约" , "sound": "7", "time": 3, "node": "msgBg"}, 
+                "select": [
+                    "!seq",
+                    { "mode": "page", "sl_item": "7.0", "place":"drag_7_0", "sk_idxs":["ske_7", "7.0toufa"]},
+                    { "mode": "page", "sl_item": "7.1", "place":"drag_7_1", "sk_idxs":["ske_7", "7.1toufa"]}
+                ]
+            },
+            {  "finish": "page_2_9", "bg": "page_0/9.bg",
+                "complete": { "mode": "chat", "text": "青花入画，留白成诗" , "sound": "9", "time": 2, "node": "msgBg"}, 
+                "select": [
+                    "!seq",
+                    { "mode": "page", "sl_item": "9.0", "place":"drag_9_0", "sk_idxs":["ske_9", "9.0toufa"]},
+                    { "mode": "page", "sl_item": "9.1", "place":"drag_9_1", "sk_idxs":["ske_9", "9.1toufa"]}
+                ]
+            },
+            {  "finish": "page_3_11", "bg": "page_0/11.bg",
+                "complete": { "mode": "chat", "text": "岁岁常相见，事事皆圆满" , "sound": "11", "time": 3, "node": "msgBg"}, 
+                "select": [
+                    "!seq",
+                    { "mode": "page", "sl_item": "11.0", "place":"drag_11_0", "sk_idxs":["ske_11", "11.0toufa"]},
+                    { "mode": "page", "sl_item": "11.1", "place":"drag_11_1", "sk_idxs":["ske_11", "11.1toufa"]}
+                ]
+            },
+            {  "finish": "page_4_15", "bg": "page_0/15.bg",
+                "complete": { "mode": "chat", "text": "偷得浮生半日闲，连小兔子都要羡慕我们啦" , "sound": "15", "time": 5, "node": "msgBg"}, 
+                "select": [
+                    "!seq",
+                    { "mode": "page", "sl_item": "15.0", "place":"drag_15_0", "sk_idxs":["ske_15", "15.0toufa"]},
+                    { "mode": "page", "sl_item": "15.1", "place":"drag_15_1", "sk_idxs":["ske_15", "15.1toufa"]}
+                ]
+            },
+            {  "finish": "page_5_23", "bg": "page_0/23.bg",
+                "complete": { "mode": "chat", "text": "与闺蜜共赴一场盛大的花神之约" , "sound": "23", "time": 4, "node": "msgBg"}, 
+                "select": [
+                    "!seq",
+                    { "mode": "page", "sl_item": "23.0", "place":"drag_23_0", "sk_idxs":["ske_23", "23_0toufa"]},
+                    { "mode": "page", "sl_item": "23.1", "place":"drag_23_1", "sk_idxs":["ske_23", "23_1toufa"]}
+                ]
+            },
+            {  "finish": "page_6_27", "bg": "page_0/27.bg",
+                "complete": { "mode": "chat", "text": "铜雀春深锁二乔" , "sound": "27", "time": 2, "node": "msgBg"}, 
+                "select": [
+                    "!seq",
+                    { "mode": "page", "sl_item": "27.0", "place":"drag_27_0", "sk_idxs":["ske_27", "27_0toufa"]},
+                    { "mode": "page", "sl_item": "27.1", "place":"drag_27_1", "sk_idxs":["ske_27", "27_1toufa"]}
+                ]
+            },
+            {  "finish": "page_7_30", "bg": "page_0/30.bg",
+                "complete": { "mode": "chat", "text": "你说四大皆空，却紧闭双眼" , "sound": "30", "time": 3, "node": "msgBg"}, 
+                "select": [
+                    "!seq",
+                    { "mode": "page", "sl_item": "30.0", "place":"drag_30_0", "sk_idxs":["ske_30", "30.0toufa"]},
+                    { "mode": "page", "sl_item": "30.1", "place":"drag_30_1", "sk_idxs":["ske_30", "30.1toufa"]}
+                ]
+            },
+            {  "finish": "page_8_37", "bg": "page_0/37.bg",
+                "complete": { "mode": "chat", "text": "簪花踏雪，不负良辰" , "sound": "37", "time": 2, "node": "msgBg"}, 
+                "select": [
+                    "!seq",
+                    { "mode": "page", "sl_item": "37.0", "place":"drag_37_0", "sk_idxs":["ske_37", "37_0toufa"]},
+                    { "mode": "page", "sl_item": "37.1", "place":"drag_37_1", "sk_idxs":["ske_37", "37_1toufa"]}
+                ]
+            },
+            {  "finish": "page_9_39", "bg": "page_0/39.bg",
+                "complete": { "mode": "chat", "text": "我向神明许愿，心之所愿必能如愿" , "sound": "39", "time": 4, "node": "msgBg"}, 
+                "select": [
+                    "!seq",
+                    { "mode": "page", "sl_item": "39.0", "place":"drag_39_0", "sk_idxs":["ske_39", "39_0toufa"]},
+                    { "mode": "page", "sl_item": "39.1", "place":"drag_39_1", "sk_idxs":["ske_39", "39_1toufa"]}
+                ]
+            }
+		]
+	},
+
+	// 关卡逻辑流程控制, cmds列表必须以 "seq" 或 "!seq"开头
+	// "seq" 代表按顺序执行列表逻辑, "!seq" 代表并行执行列表逻辑
+	"cmds": [
+		"seq" 			// 顺序执行列表逻辑
+	]
+}
