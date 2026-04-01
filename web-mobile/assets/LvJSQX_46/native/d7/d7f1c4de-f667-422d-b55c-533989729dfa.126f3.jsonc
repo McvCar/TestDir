@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "受困锁妖塔",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 6,
+		"cut_y": 6,
+		"gameoverText": "又是这破塔，景区体验卡再次生效"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

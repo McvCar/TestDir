@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "助攻老十",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 7,
+		"cut_y": 7,
+		"gameoverText": "行到水穷处，坐看云起时。"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

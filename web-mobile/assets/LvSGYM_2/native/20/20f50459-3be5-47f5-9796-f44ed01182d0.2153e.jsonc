@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "曦慧冲突",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 3,
+		"cut_y": 3,
+		"gameoverText": "身为嫡福晋，当家女眷，岂不是要罚得更更更重"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

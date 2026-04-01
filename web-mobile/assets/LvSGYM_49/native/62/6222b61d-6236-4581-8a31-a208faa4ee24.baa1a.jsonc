@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "感情决裂",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 6,
+		"cut_y": 6,
+		"gameoverText": "我说过我唯一怕的，就是你离开我，现在我什么都不怕了"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

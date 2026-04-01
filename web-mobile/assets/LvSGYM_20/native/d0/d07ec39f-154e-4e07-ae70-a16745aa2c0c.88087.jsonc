@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "共同游湖",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 8,
+		"cut_y": 8,
+		"gameoverText": "如果你不要只是为了错过月亮而低头哭泣的话，也许会看见繁星满天呢！"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

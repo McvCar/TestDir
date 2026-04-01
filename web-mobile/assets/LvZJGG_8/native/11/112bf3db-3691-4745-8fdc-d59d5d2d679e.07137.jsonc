@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "真格格心急如焚",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 7,
+		"cut_y": 7,
+		"gameoverText": "正主看着替身登台领奖"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

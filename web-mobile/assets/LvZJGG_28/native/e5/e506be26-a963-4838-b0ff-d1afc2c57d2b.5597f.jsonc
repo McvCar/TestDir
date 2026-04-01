@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "严惩嬷嬷",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 6,
+		"cut_y": 6,
+		"gameoverText": "这波《宫廷职场反霸凌指南》必须收藏！"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "勇闯猎场",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 6,
+		"cut_y": 6,
+		"gameoverText": "我在皇宫当卧底之开局即送一血"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

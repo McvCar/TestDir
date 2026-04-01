@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "冤家和好",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 7,
+		"cut_y": 7,
+		"gameoverText": "我们都是为了各自的姐姐，没有谁对谁错，只是立场不同而已"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

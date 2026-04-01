@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "自焚",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 6,
+		"cut_y": 6,
+		"gameoverText": "锦绣丛里卧鸳鸯，身相近，心相远。 烈火焰中飞凤凰，身相远，心相近。"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

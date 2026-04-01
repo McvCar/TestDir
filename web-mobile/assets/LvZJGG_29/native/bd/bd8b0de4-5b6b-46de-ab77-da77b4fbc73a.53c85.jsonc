@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "微服出巡",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 7,
+		"cut_y": 7,
+		"gameoverText": "皇上下乡搞调研，向往的生活之皇帝体验版"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

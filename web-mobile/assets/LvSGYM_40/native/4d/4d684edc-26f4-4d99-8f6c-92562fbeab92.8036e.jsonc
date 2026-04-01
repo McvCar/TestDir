@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "冷战",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 6,
+		"cut_y": 6,
+		"gameoverText": "若离于色因，色则不可得；若当离于色，色因不可得。"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

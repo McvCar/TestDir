@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "公主来京",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 8,
+		"cut_y": 8,
+		"gameoverText": "公主空降，阿康说只想给紫薇一个家，不想当驸马"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

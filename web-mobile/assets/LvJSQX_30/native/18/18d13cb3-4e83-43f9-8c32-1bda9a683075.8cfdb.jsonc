@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "阿云的秘密",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 8,
+		"cut_y": 8,
+		"gameoverText": "我就说这小子有剧本吧！"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

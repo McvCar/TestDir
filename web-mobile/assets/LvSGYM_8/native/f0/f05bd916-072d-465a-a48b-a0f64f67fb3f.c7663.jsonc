@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "玉镯表白",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 7,
+		"cut_y": 7,
+		"gameoverText": "在我茫然不知时，流逝的时光已经改变了我。"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "夜访献艺",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 8,
+		"cut_y": 8,
+		"gameoverText": "开启才艺表演自救模式，为刷存在感狂刷礼物，主打直播间上分之路"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

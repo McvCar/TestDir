@@ -1,0 +1,18 @@
+{
+	"timeout": 180,
+	"name": "阿丹入宫",
+	"music": "古风（红马）",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 6,
+		"cut_y": 6,
+		"gameoverText": "痴情男潜入皇宫，极限贴贴"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

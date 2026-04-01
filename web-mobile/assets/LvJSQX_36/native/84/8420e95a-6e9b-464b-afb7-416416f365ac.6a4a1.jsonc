@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "被困幽玄境",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 6,
+		"cut_y": 6,
+		"gameoverText": "敌方水晶观光游，体验感极差，差评！"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

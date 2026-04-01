@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "意外穿越",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 3,
+		"cut_y": 3,
+		"gameoverText": "已是在古代的第十个日子，可我还是觉得这是一场梦，只等我醒来就在现代社会，而不是在康熙四十三年。"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

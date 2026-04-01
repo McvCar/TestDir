@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "父爱满满",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 5,
+		"cut_y": 5,
+		"gameoverText": "《重生之我的皇帝父亲》--朕的女儿，朕不疼谁疼？"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

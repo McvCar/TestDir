@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "取元珠 青儿亡",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 7,
+		"cut_y": 7,
+		"gameoverText": "为了通关牺牲队友，这游戏玩不下去了！"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

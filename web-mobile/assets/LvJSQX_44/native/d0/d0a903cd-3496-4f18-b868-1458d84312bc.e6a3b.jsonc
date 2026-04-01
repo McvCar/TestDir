@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "爱女心切",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 7,
+		"cut_y": 7,
+		"gameoverText": "堪比女儿奴晚期患者"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

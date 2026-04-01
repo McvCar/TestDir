@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "打架落水",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 5,
+		"cut_y": 5,
+		"gameoverText": "小时候我网名叫拼命十三妹"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

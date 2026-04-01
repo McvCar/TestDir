@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "托病拒婚",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 7,
+		"cut_y": 7,
+		"gameoverText": "难道，这就是老天为我准备的结局吗"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

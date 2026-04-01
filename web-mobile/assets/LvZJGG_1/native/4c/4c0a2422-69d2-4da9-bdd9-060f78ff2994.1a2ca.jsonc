@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "千里寻父",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 3,
+		"cut_y": 3,
+		"gameoverText": "爸爸去哪儿乾隆版，跨越千里的寻亲之旅"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

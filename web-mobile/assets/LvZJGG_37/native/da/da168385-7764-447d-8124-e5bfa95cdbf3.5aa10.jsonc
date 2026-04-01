@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "狱中被打",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 7,
+		"cut_y": 7,
+		"gameoverText": "重生之我在大牢渡劫？"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

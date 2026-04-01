@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "痴心追爱",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 5,
+		"cut_y": 5,
+		"gameoverText": "梦也渺渺，人也渺渺，天若有情天亦老"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

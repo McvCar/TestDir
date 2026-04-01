@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "错认女儿",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 6,
+		"cut_y": 6,
+		"gameoverText": "喜提冒牌格格体验卡"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "崩溃流产",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 7,
+		"cut_y": 7,
+		"gameoverText": "我一直担心着八爷的结局，可是没有料到这个结局竟然会是自己一手促成。时间似乎停留在这一刻，无始无终…"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

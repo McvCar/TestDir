@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "冒险出宫",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 6,
+		"cut_y": 6,
+		"gameoverText": "再启“越狱”模式，目标：姐妹相见，剧情走向《我在皇宫当特工的日子》"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

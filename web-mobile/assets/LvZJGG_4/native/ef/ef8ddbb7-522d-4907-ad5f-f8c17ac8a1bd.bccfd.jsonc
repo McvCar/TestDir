@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "路见不平",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 5,
+		"cut_y": 5,
+		"gameoverText": "日常行侠仗义，忍一时风平浪静，退一步越想越气"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

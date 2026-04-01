@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "两人分手",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 7,
+		"cut_y": 7,
+		"gameoverText": "如果他明日就断头，我会毫不犹豫地扑上去的，刹那燃烧就是永恒…"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

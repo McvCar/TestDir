@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "讨要休书",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 8,
+		"cut_y": 8,
+		"gameoverText": "求王爷放姐姐自由"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

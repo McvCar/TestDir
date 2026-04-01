@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "姐妹相见",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 7,
+		"cut_y": 7,
+		"gameoverText": "塑料姐妹花？不，我们是钢筋混凝土的"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

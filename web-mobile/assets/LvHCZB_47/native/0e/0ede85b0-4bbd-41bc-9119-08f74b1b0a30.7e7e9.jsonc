@@ -1,0 +1,18 @@
+{
+	"timeout": 180,
+	"name": "重返京城",
+	"music": "古风（红马）",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 7,
+		"cut_y": 7,
+		"gameoverText": "浪够了回家，像极了假期最后一天返程的打工人"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

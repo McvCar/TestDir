@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "出席寿宴",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 5,
+		"cut_y": 5,
+		"gameoverText": "俱往矣，数风流人物，还看今朝。"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

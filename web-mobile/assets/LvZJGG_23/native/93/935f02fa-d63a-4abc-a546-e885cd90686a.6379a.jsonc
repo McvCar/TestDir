@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "针对漱芳斋",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 7,
+		"cut_y": 7,
+		"gameoverText": "反派上线，开始对漱芳斋进行霸凌"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

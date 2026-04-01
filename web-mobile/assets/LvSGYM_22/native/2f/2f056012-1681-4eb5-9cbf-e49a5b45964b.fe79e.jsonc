@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "红梅舞",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 6,
+		"cut_y": 6,
+		"gameoverText": "音渐不闻声渐消，多情总被无情恼。"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

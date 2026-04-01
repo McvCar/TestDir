@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "神界大将军",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 7,
+		"cut_y": 7,
+		"gameoverText": "别惹我，我以前可是天庭公务员"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

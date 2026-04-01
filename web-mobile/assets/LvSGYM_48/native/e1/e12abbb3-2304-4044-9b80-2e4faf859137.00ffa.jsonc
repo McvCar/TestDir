@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "求赐婚",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 8,
+		"cut_y": 8,
+		"gameoverText": "她说，她愿意"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

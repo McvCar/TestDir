@@ -1,0 +1,18 @@
+{
+	"timeout": 180,
+	"name": "身陷黑店",
+	"music": "古风（红马）",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 8,
+		"cut_y": 8,
+		"gameoverText": "这客栈好评全是刷的吧？"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

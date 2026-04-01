@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "寻死撞马",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 4,
+		"cut_y": 4,
+		"gameoverText": "谁让你勒马的！"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

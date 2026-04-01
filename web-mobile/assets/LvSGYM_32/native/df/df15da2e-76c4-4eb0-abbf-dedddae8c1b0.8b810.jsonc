@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "收服室友",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 6,
+		"cut_y": 6,
+		"gameoverText": "这不厚的城墙却是天涯海角的距离，不过走十几步就能相触，却是难如登天的险途。"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

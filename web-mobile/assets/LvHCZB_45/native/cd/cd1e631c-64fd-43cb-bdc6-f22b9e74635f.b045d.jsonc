@@ -1,0 +1,18 @@
+{
+	"timeout": 180,
+	"name": "诗文会",
+	"music": "古风（红马）",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 5,
+		"cut_y": 5,
+		"gameoverText": "文学比赛，水平堪比高考写作文，主打一个重在参与"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "魔尊现世",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 6,
+		"cut_y": 6,
+		"gameoverText": "BOSS一登场，压迫感直接拉满"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

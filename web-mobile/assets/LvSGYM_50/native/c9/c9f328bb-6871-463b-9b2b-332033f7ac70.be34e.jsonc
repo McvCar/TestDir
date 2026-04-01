@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "彼此思念",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 7,
+		"cut_y": 7,
+		"gameoverText": "人生一梦，白云苍狗。错错对对，恩恩怨怨，终不过日月无声，水过无痕。"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

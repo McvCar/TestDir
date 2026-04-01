@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "秘密约会",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 8,
+		"cut_y": 8,
+		"gameoverText": "好一朵美丽的茉莉花，好一朵美丽的茉莉花，满园花开，比也比不过它，我有心采一朵戴，又怕来年不发芽…"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

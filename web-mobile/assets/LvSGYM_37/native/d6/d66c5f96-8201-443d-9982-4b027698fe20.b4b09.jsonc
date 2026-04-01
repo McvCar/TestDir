@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "不爽翻牌",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 7,
+		"cut_y": 7,
+		"gameoverText": "只有我可以抓你的小辫子"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

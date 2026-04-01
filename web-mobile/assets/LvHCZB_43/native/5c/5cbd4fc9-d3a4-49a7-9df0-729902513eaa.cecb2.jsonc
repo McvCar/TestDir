@@ -1,0 +1,18 @@
+{
+	"timeout": 180,
+	"name": "赌气闹柿林",
+	"music": "古风（红马）",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 6,
+		"cut_y": 6,
+		"gameoverText": "情绪上头，理智下线"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

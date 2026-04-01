@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "欲放弃认亲",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 5,
+		"cut_y": 5,
+		"gameoverText": "大型认亲连续剧之反转，原来不是塑料姐妹花，而是信息差惹的祸"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "打败魔尊",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 8,
+		"cut_y": 8,
+		"gameoverText": "BOSS虽强，但我们有主角光环"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "乱抛绣球",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 8,
+		"cut_y": 8,
+		"gameoverText": "民间上演随机配对，差点体验一把非诚勿扰"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

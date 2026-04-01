@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "安慰十三",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 6,
+		"cut_y": 6,
+		"gameoverText": "去也终须去，往也如何往。若得山花插满头，莫问奴归处。"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

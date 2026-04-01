@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "护兄斩群魔",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 5,
+		"cut_y": 5,
+		"gameoverText": "妹控的力量，足以让整个世界颤抖"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

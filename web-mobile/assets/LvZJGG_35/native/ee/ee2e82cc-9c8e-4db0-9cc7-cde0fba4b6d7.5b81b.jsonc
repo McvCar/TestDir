@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "乱点鸳鸯",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 5,
+		"cut_y": 5,
+		"gameoverText": "化身最强月老，非官方CP大乱炖"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

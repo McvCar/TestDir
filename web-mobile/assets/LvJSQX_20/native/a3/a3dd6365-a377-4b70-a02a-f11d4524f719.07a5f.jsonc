@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "土元珠",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 8,
+		"cut_y": 8,
+		"gameoverText": "为了这颗破珠子跑断腿"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

@@ -1,0 +1,18 @@
+{
+	"timeout": 180,
+	"name": "格格引蜂",
+	"music": "古风（红马）",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 5,
+		"cut_y": 5,
+		"gameoverText": "这就是传说中的买家秀和卖家秀吧"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

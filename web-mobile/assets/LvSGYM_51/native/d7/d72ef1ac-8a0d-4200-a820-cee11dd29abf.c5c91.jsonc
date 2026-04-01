@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "苦等老四",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 8,
+		"cut_y": 8,
+		"gameoverText": "相思相望不相亲，薄情转是多情累，曲曲柔肠碎，红笺白壁字模糊，曲阑深处重相见，日日盼君至。"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

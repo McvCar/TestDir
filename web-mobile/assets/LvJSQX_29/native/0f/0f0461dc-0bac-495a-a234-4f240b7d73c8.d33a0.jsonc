@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "夺取火元珠",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 7,
+		"cut_y": 7,
+		"gameoverText": "亲亲，建议您这边下载国家反差app噢~"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

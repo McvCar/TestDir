@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "饮酒作乐",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 6,
+		"cut_y": 6,
+		"gameoverText": "忘掉得不到的，珍惜已经得到的…"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

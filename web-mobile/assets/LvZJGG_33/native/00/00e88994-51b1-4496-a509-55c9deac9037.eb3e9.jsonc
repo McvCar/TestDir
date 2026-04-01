@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "遇刺挡刀",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 7,
+		"cut_y": 7,
+		"gameoverText": "舍命护驾，拔刀名场面，终于刷满亲爹好感度"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

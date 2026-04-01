@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "众人营救",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 5,
+		"cut_y": 5,
+		"gameoverText": "集体出动，上演《营救紫薇之全员加速中》"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

@@ -1,0 +1,18 @@
+{
+	"timeout": 180,
+	"name": "再遇故人",
+	"music": "古风（红马）",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 5,
+		"cut_y": 5,
+		"gameoverText": "由爱生嗔 由爱生恨 由爱生痴 由爱生念 从别后 嗔恨痴念 皆化为寸寸相思"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

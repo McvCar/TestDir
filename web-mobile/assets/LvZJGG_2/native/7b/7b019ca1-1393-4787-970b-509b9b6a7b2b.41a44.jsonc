@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "大闹梁府",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 3,
+		"cut_y": 3,
+		"gameoverText": "路见不平一声吼，本姑娘今天就要替天行道！"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

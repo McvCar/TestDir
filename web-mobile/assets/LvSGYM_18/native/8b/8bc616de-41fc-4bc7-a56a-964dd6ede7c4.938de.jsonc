@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "老八拥吻",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 6,
+		"cut_y": 6,
+		"gameoverText": "记得当时年纪小，你爱谈天我爱笑，并肩坐在桃树下，风在树梢鸟在叫。不知怎么睡着了，梦里花落知多少。"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

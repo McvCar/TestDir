@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "被贬浣衣局",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 5,
+		"cut_y": 5,
+		"gameoverText": "白洗了十年衣服…"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

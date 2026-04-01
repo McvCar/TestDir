@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "洗清邪念",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 5,
+		"cut_y": 5,
+		"gameoverText": "净化心灵，比卸载流氓软件还费劲"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

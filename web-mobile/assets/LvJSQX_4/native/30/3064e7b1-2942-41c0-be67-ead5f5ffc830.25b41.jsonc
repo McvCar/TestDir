@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "大战僵尸兵团",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 5,
+		"cut_y": 5,
+		"gameoverText": "植物大战僵尸真人版，还没植物"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "得知真相",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 6,
+		"cut_y": 6,
+		"gameoverText": "你们居然骗我！！！"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

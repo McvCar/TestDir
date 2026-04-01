@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "收留采莲",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 6,
+		"cut_y": 6,
+		"gameoverText": "路上捡个小白花，五阿哥喜提妹妹考验"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

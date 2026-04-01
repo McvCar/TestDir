@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "告白",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 5,
+		"cut_y": 5,
+		"gameoverText": "内娱纯爱战士的胜利宣言"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

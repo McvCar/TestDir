@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "受惊得救",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 6,
+		"cut_y": 6,
+		"gameoverText": "我觉得似乎这就是我全部的世界，我们可以骑着马找到我的幸福…"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

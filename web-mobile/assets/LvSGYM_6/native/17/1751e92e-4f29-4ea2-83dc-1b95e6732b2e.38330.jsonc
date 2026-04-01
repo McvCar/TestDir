@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "上朝面圣",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 6,
+		"cut_y": 6,
+		"gameoverText": "现在告诉我，一切都是命。认命？我绝不接受。"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

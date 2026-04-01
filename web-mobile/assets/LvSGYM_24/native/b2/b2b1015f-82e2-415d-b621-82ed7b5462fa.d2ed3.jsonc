@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "玉簪逼婚",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 8,
+		"cut_y": 8,
+		"gameoverText": "我知道所有人的结局，却唯独不知道自己的结局，我躲来躲去，没想到却落到了风暴中心。"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

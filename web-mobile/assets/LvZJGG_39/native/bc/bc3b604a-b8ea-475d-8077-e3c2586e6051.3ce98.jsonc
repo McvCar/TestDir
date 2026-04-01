@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "认父归宗",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 5,
+		"cut_y": 5,
+		"gameoverText": "历经九九八十一难，终于喜提格格称号，《重生之我是真格格》迎来大结局！"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

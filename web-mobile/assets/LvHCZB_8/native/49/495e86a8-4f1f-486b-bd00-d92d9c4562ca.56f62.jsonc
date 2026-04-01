@@ -1,0 +1,18 @@
+{
+	"timeout": 180,
+	"name": "恶补成语",
+	"music": "古风（红马）",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 7,
+		"cut_y": 7,
+		"gameoverText": "临时抱佛脚，水平堪比外国人考中文四级，主打一个胡说八道但自信"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

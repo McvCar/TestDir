@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "冒死劫狱",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 8,
+		"cut_y": 8,
+		"gameoverText": "姐妹们，是时候展现真正的义气了！"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

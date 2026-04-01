@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "美男计",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 6,
+		"cut_y": 6,
+		"gameoverText": "靠脸吃饭，关键时刻颜值就是生产力"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

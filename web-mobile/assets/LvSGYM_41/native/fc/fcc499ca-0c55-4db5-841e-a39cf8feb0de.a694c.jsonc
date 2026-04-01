@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "和好",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 7,
+		"cut_y": 7,
+		"gameoverText": "所以皇上肩膀痛是被什么压着了呢"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "流落街头",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 8,
+		"cut_y": 8,
+		"gameoverText": "从富二代秒变破庙艺术家，人生无常，大肠包小肠"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

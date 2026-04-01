@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "雪中漫步",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 6,
+		"cut_y": 6,
+		"gameoverText": "雪仍在下，整个世界安静得只剩下我们踩雪的声音，我觉得这白茫茫天地之间好像只剩下了我和他。"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

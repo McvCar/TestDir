@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "挡箭受伤",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 8,
+		"cut_y": 8,
+		"gameoverText": "我想弄明白，想看看这个宫廷究竟能残忍到何等地步？"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

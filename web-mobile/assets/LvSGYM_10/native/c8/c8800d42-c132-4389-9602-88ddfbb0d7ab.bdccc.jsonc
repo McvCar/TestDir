@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "老四强吻",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 6,
+		"cut_y": 6,
+		"gameoverText": "我决定再也不跟四阿哥学骑马了，一个捉摸不透的定时炸弹放在身边，太遭罪了。"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

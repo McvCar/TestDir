@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "坦白真相",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 7,
+		"cut_y": 7,
+		"gameoverText": "过去种种，譬如昨日死；以后种种，譬如今日生。"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

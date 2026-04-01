@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "进宫奉茶",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 5,
+		"cut_y": 5,
+		"gameoverText": "才始迎春来，又送春归去。"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

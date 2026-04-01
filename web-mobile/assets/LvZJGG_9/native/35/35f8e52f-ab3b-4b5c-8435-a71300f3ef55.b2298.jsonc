@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "被封格格",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 5,
+		"cut_y": 5,
+		"gameoverText": "正式开启《我在清朝当顶流》爆红生涯"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

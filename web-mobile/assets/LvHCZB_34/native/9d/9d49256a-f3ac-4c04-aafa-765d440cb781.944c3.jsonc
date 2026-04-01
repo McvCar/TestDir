@@ -1,0 +1,18 @@
+{
+	"timeout": 180,
+	"name": "救下火刑女",
+	"music": "古风（红马）",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 8,
+		"cut_y": 8,
+		"gameoverText": "路见不平一声吼，该出手时就出手，这届格格是有点侠义在身上的"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

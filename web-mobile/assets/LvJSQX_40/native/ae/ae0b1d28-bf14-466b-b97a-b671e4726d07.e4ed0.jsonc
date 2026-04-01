@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "私放邪气",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 6,
+		"cut_y": 6,
+		"gameoverText": "反派是我亲手放出来的，怪我咯？"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

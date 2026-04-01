@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "重回御前",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 7,
+		"cut_y": 7,
+		"gameoverText": "从爱生忧患，从爱生怖畏；离爱无忧患，何处有怖畏？"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

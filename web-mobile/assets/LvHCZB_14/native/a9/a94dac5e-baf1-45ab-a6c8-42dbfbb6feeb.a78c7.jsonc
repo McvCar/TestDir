@@ -1,0 +1,18 @@
+{
+	"timeout": 180,
+	"name": "巫蛊风波",
+	"music": "古风（红马）",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 6,
+		"cut_y": 6,
+		"gameoverText": "后宫搞起封建迷信，这口黑锅扣得比外卖骑手的配送费还快"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

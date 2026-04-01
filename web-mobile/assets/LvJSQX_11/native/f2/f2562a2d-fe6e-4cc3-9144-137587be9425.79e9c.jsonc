@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "锁妖塔收邪气",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 7,
+		"cut_y": 7,
+		"gameoverText": "专业团队，上门回收，给个五星好评呗"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

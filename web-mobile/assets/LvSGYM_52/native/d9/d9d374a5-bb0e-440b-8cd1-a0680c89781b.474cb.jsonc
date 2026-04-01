@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "抱憾去世",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 5,
+		"cut_y": 5,
+		"gameoverText": "最好不相见，如此便可不相恋。最好不相知，如此便可不相思。"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

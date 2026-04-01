@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "冲动嫁阿云",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 6,
+		"cut_y": 6,
+		"gameoverText": "主打一个冲动消费，不支持七天无理由退货"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

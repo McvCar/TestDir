@@ -1,0 +1,18 @@
+{
+	"timeout": 180,
+	"name": "解救阿紫",
+	"music": "古风（红马）",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 5,
+		"cut_y": 5,
+		"gameoverText": "险中救人，把姐妹从火坑里拉出来"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

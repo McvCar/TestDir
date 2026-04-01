@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "侥幸得谅",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 8,
+		"cut_y": 8,
+		"gameoverText": "天子的心软与无奈，这波越狱就算了"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

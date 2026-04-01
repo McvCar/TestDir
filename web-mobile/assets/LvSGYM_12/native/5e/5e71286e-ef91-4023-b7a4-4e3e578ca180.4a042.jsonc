@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "冒死求情",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 8,
+		"cut_y": 8,
+		"gameoverText": "作为一个皇帝，他也许没有处理妥当，可作为一个父亲，他无可非议。"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

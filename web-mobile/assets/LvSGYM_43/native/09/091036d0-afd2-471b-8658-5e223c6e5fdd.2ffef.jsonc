@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "怀孕晕倒",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 6,
+		"cut_y": 6,
+		"gameoverText": "晕沉沉中似乎做了很多梦，碎裂成一片片，混乱错杂，就如这么多年的时光，仿佛一瞬，却又痛苦而漫长。"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

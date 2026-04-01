@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "甜蜜情书",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 7,
+		"cut_y": 7,
+		"gameoverText": "胡不归，所为何？胡不归，所为何？"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

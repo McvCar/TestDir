@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "劝慰敏敏",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 5,
+		"cut_y": 5,
+		"gameoverText": "你会幸福的"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

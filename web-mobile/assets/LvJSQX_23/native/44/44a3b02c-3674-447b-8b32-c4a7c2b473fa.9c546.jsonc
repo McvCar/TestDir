@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "鬼店惊魂",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 7,
+		"cut_y": 7,
+		"gameoverText": "入住酒店遇阿飘，差评！"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

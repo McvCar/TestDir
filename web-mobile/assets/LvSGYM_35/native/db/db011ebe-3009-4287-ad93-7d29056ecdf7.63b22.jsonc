@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "绿芜自尽",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 5,
+		"cut_y": 5,
+		"gameoverText": "妾本风烟，与爷泥云有别，何敢存一丝他想。"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

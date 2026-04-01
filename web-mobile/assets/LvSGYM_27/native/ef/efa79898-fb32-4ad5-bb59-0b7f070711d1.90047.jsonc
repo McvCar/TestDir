@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "雨中罚跪",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 5,
+		"cut_y": 5,
+		"gameoverText": "片月衔山出远天，笛声悠扬晚风前。白鸥浩荡春波澜，安稳轻舟浅水边。"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

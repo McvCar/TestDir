@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "误会背叛",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 6,
+		"cut_y": 6,
+		"gameoverText": "姐妹情陷入你无情你残酷你无理取闹的经典循环"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

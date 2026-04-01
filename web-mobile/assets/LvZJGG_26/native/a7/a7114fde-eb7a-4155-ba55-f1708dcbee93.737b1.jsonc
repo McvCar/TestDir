@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "受尽折磨",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 6,
+		"cut_y": 6,
+		"gameoverText": "惨遭容嬷嬷物理超度，我在宫里渡劫之绝地求生"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

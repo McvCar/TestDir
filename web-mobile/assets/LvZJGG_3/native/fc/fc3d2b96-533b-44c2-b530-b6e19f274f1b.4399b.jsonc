@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "卖艺骗钱",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 4,
+		"cut_y": 4,
+		"gameoverText": "才艺主播线下见面会"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

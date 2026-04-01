@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "姐姐病逝",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 5,
+		"cut_y": 5,
+		"gameoverText": "紫金城的美丽，比不上天边那一条彩虹…"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

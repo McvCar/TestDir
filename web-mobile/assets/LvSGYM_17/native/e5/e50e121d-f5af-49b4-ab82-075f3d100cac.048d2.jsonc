@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "梁祝",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 5,
+		"cut_y": 5,
+		"gameoverText": "月老虽把婚姻掌，有情人才能配成双"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

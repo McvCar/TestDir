@@ -1,0 +1,18 @@
+{
+	"timeout": 180,
+	"name": "逃离黑棋社",
+	"music": "古风（红马）",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 5,
+		"cut_y": 5,
+		"gameoverText": "这段经历够写一本《我在缅北那些年》"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

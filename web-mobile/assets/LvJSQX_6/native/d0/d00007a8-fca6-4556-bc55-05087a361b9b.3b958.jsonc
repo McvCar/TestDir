@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "初吻被夺",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 6,
+		"cut_y": 6,
+		"gameoverText": "这算工伤吧？强烈要求赔偿精神损失费！"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

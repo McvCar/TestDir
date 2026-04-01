@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "义结金兰",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 5,
+		"cut_y": 5,
+		"gameoverText": "史上最强闺蜜局成立，不求同年同月同日生，但求同年同月同日死"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

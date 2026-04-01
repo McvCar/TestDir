@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "诉出真相",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 8,
+		"cut_y": 8,
+		"gameoverText": "终于把真相说出来了，阿康听完CPU都快烧干了"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

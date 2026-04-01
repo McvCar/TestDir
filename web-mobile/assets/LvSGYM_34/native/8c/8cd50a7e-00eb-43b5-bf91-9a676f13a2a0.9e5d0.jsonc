@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "老四登基",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 8,
+		"cut_y": 8,
+		"gameoverText": "他隐忍十多年的梦想终于迎来了光明，而其他人的命运也必将沿着历史的轨迹缓缓滑入黑暗之中…"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

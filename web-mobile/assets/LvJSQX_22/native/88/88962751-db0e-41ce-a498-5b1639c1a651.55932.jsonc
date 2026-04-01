@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "假扮夫妻",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 6,
+		"cut_y": 6,
+		"gameoverText": "为了任务被迫领证，表面老公老婆叫得欢，实际纯爱战士不敢动"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

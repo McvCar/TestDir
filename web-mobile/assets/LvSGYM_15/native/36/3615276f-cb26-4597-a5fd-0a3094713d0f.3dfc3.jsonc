@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "假扮恋人",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 7,
+		"cut_y": 7,
+		"gameoverText": "你不让我拽，我偏要拽，嘤嘤嘤"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

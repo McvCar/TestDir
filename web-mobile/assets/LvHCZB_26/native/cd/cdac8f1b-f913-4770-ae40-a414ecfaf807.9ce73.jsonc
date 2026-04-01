@@ -1,0 +1,18 @@
+{
+	"timeout": 180,
+	"name": "香香复活",
+	"music": "古风（红马）",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 6,
+		"cut_y": 6,
+		"gameoverText": "买了复活甲就是不一样"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

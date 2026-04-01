@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "不忍免罚",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 8,
+		"cut_y": 8,
+		"gameoverText": "本集又名《老父亲的心软瞬间》"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

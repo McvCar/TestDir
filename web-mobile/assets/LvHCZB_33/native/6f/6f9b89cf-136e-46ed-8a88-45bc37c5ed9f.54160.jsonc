@@ -1,0 +1,18 @@
+{
+	"timeout": 180,
+	"name": "装傻退官兵",
+	"music": "古风（红马）",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 7,
+		"cut_y": 7,
+		"gameoverText": "只要我够傻，你就拿我没办法"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

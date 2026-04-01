@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "魅惑魔尊",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 7,
+		"cut_y": 7,
+		"gameoverText": "在线教学斩男术？这谁顶得住啊！"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "阿康表白",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 6,
+		"cut_y": 6,
+		"gameoverText": "山无棱，天地合，才敢与君绝"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

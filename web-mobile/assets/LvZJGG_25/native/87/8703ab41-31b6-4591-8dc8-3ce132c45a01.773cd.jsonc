@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "暗中监视",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 7,
+		"cut_y": 7,
+		"gameoverText": "开启24小时无死角盯人模式"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

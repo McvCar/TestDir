@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "被迫休妻",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 5,
+		"cut_y": 5,
+		"gameoverText": "为何臣弟一再退让，竟能让皇兄步步相逼至此"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

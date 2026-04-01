@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "再续前缘",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 5,
+		"cut_y": 5,
+		"gameoverText": "兜兜转转还是你，替身文学玩明白了"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

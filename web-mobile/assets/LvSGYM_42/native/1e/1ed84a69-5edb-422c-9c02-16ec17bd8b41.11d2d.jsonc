@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "玉檀被蒸",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 5,
+		"cut_y": 5,
+		"gameoverText": "那是我妹妹呀！"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

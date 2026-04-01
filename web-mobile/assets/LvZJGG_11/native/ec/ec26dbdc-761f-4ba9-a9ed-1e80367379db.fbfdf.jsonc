@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "被打遇阿康",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 7,
+		"cut_y": 7,
+		"gameoverText": "英雄救美经典桥段，恋爱剧本从此启动"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

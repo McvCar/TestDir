@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "入宫为婢",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 6,
+		"cut_y": 6,
+		"gameoverText": "喜提宫女体验卡，从准格格到打工人"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

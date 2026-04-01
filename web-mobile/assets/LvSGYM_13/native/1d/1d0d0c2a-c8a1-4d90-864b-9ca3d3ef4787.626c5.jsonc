@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "三人共饮",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 5,
+		"cut_y": 5,
+		"gameoverText": "劝君莫惜金缕衣，劝君惜取少年时，花开堪折直须折，莫待无花空折枝。"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}

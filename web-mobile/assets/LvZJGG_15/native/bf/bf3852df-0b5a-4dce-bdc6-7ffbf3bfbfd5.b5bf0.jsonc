@@ -1,0 +1,17 @@
+{
+	"timeout": 180,
+	"name": "被罚受伤",
+	"hint": {
+		"hintType": 1,
+		"hintText": []
+	},
+	"puzzleCfg": {
+		"cut_x": 7,
+		"cut_y": 7,
+		"gameoverText": "我在皇宫的渡劫日常》，凭实力在宫里混成了工伤钉子户"
+	},
+	"rule": [],
+	"cmds": [
+		"seq"
+	]
+}
